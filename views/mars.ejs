@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="mars">
+			<div class="navbar navbar-static-top">
+				<div class="container clearfix">
+					<a class="logo float-l" href="/">HwH</a>
+					<ul class="nav navbar-nav clearfix float-r">
+						<li><a href="/">首页</a></li>
+						<li><a href="/post">发布文章</a></li>
+						<% if (user) { %>
+							<%if (user.name === 'kai') {%>
+							<li class="active"><a href="/mars">火星票</a></li>
+							<% } %>
+						<li><a href="/logout">退出</span></a></li>
+						<% } else {%>
+						<li><a href="/login">登录</span></a></li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+			<div class="content">
+				<div class="item clearfix">
+					<div class="head float-l">
+						<a href="javascript:;" class="user_head" title="<%= user.name %>">
+							<img src="<%= user.head %>" alt="<%= user.name %>">
+						</a>
+					</div>
+					<div class="ticket float-r">
+						<iframe src="http://mars.nasa.gov/participate/send-your-name/orion-first-flight/?action=getcert&e=1&cn=478680" width="1000" height="410" scrolling="no" frameborder="0"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="/js/jquery-2.0.3.min.js"></script>
+
+  </body>
+</html>

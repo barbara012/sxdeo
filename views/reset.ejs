@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="reset-page">
+			<div class="container">
+				<div class="contan">
+				<% if (!past) { %>
+					<h2 class="txt-center">马虎君：<%= user.name %></h2>
+					<form action="/reset/password/<%= user.name %>" class="form-horizontal" role="form" method="post">
+						<div>
+							<label for="password" class="control-label">新密码</label>
+							<div>
+								<input type="password" name="password" class="form-control" id="password" placeholder="密码">
+							</div>
+						</div>
+						<div>
+							<label for="repeat-Password" class="control-label">确认密码</label>
+							<div>
+								<input type="password" name="repassword" class="form-control" id="repeat-Password" placeholder="确认密码">
+							</div>
+						</div>
+						<div class="clearfix">
+							<button type="submit" class="btn btn-primary pull-right">重置</button>
+						</div>
+					</form>
+				<% } else { %>
+					<h2>链接已经过期</h2>
+				<% } %>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

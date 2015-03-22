@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <% include head %>
+  <body>
+  	<div class="navbar navbar-fixed-top">
+  		<div class="navbar-inner">
+  			<div class="container">
+  				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  					<span class="icon-bar"></span>
+  				</a>
+  				<div class="nav-collapse">
+  					<ul class="nav">
+    						<li>
+    							  <a href="/">首页</a>
+    						</li>
+    					<% if (user) { %>
+    						<li>
+    							  <a href="/post">发布</a>
+    						</li>
+    						<li>
+      					    <a href="/"><%= user.name %></a>
+    						</li>
+			                 <li class="active">
+			                    <a href="/album">相册</a>
+			                </li>
+    						<li>
+    							  <a href="/logout">登出</a>
+    						</li>
+    						<li>
+    							  <a href="/upload">上传文件</a>
+    						</li>
+    					<% } else { %>
+    						<li>
+    							  <a href="/login">登录</a>
+    						</li>
+    						<li>
+    							  <a href="/reg">注册</a>
+    						</li>
+  					<% } %>
+  					</ul>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  	<div id="container" class="container">
+  		<article>
+          <% imgs.forEach(function (img, index) { %>
+              <a href="#" class="thumbnail">
+                  <img src="<%= img.pic %>">
+              </a>
+          <% }) %>	
+      </article>
+       <%- include paging %>
+      <hr/>
+  		<% include footer %>
+  	</div>
+  </body>
+</html>

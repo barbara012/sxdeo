@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="discuss-page">
+			<!-- <nav class="navbar navbar-static-top">
+				<div class="container clearfix">
+					<a class="logo float-l" href="/">HwH</a>
+					<ul class="nav navbar-nav clearfix float-r">
+						<li><a href="/">首页</a></li>
+						<li><a href="/post">发布文章</a></li>
+						<% if (user) { %>
+							<%if (user.name === 'kai') {%>
+							<li><a href="/mars">火星票</a></li>
+							<% } %>
+							<%if (user.name === 'huwenhua012') {%>
+							<li><a href="/set">设置</a></li>
+							<% } %>
+						<li class="active"><a href="/discuss">讨论</a></li>
+						<li><a href="/logout">退出</span></a></li>
+						<% } else {%>
+						<li><a href="/login">登录</span></a></li>
+						<% } %>
+					</ul>
+				</div>
+			</nav> -->
+			<div class="main">
+				<h1>前端CSS规范与DOM规范讨论</h1>
+
+				<div class="issue">
+					<h2 class="issue__title">规范CSS	BEM思想</h2>
+					<div class="issue__content">
+						<p class="p1">避免嵌套过深</p>
+						<p class="p1">避免元素选择器</p>
+						<p class="p1">一个页面一个作用域（这个是我们网站目前的套路，觉得还不错。</p>
+						<p class="p1">激活状态的按钮，都应该在hover或者active后有反馈</p>
+						<br/>
+						<p class="p1">注：我想了几种BEM的写法</p>
+						<p>1、block__emelemt--modifier</p>
+						<p>2、block_emelemt--modifier</p>
+						<p>3、block__emelemt_modifier</p>
+						<p>4、block_emelemt__modifier</p>
+						<p>5、block--emelemt_modifier</p>
+						<p>6、block--emelemt__modifier</p>
+					</div>
+				</div>
+				<div class="issue">
+					<h2 class="issue__title">规范DOM	BEM思想</h2>
+					<div class="issue__content">
+						<p class="p1">避免过分依赖CSS来达到DOM的精简</p>
+					</div>
+				</div>
+				<div class="issue">
+					<h2 class="issue__title">浏览器兼容问题（IE8，IE9）</h2>
+					<div class="issue__content">
+						<p class="p1">CSS方面，优雅降级的原则</p>
+					</div>
+				</div>
+				<div class="issue">
+					<h2 class="issue__title">像素眼</h2>
+					<div class="issue__content">
+						<p class="p1">产品出来后，设计可能会帮忙测试，这个时候的，设计师可能只会感知大的差异性，细小的，譬如块的外边距，内边距，可能就疏忽了。这个时候只能靠前端的像素眼了。</p>
+					</div>
+				</div>
+			</div>
+			<% include footer %>
+			<script>
+				$(document).ready(function () {
+				})
+			</script>
+		</div>
+	</body>
+</html>

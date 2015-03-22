@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<!-- <div class="home-page">
+			<nav class="navbar navbar-static-top">
+				<div class="container clearfix">
+					<a class="logo float-l" href="/">HwH</a>
+					<ul class="nav navbar-nav clearfix float-r">
+						<li class="active"><a href="/">首页</a></li>
+						<li><a href="/post">发布文章</a></li>
+						<% if (user) { %>
+							<%if (user.name === 'kai') {%>
+							<li><a href="/mars">火星票</a></li>
+							<% } %>
+							<%if (user.name === 'huwenhua012') {%>
+							<li><a href="/set">设置</a></li>
+							<% } %>
+						<li><a href="/discuss">讨论</a></li>
+						<li><a href="/logout">退出</span></a></li>
+						<% } else {%>
+						<li><a href="/login">登录</span></a></li>
+						<% } %>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="head">
+				<div class="bg-image">
+					<img src="http://7u2fwf.com1.z0.glb.clouddn.com/img/bg.jpg" alt="西湖">
+				</div>
+				<div class="operate">
+				</div>
+				<div class="user-head">
+					<% if (user) {%>
+					<a href="javascript:;" title="<%= user.name %>"><img alt="<%= user.name %>" src="<%= user.head %>"></a>
+					<% } else {%>
+					<a href="javascript:;" title="鬼冢英吉"><img alt="GTO" src="https://avatars3.githubusercontent.com/u/3634578?s=460"></a>
+					<%}%>
+				</div>
+			</div>
+			<div class="body">
+					<% posts.forEach(function (post, index) { %>
+				<article class="pos-rela">
+					<h1><a href="/p/<%= post.name %>/<%= post._id %>" class="title"><%= post.title.replace('<span>','').replace('</span>', '') %></a></h1>
+					<div class="article">
+						<%- post.post.replace(/(<img)(.*)(\/>)/g,'(图片)').substr(0, 200) + "···" %>
+					</div>
+					<div class="info clearfix">
+					<% if (post.tags.length > 0 && post.tags[0]) { %>
+						<span class="float-l">标签：
+							<% post.tags.forEach(function (tag, index) { %>
+							  <% if (tag) { %>
+								<a class="tag" href="/tags/<%= tag %>"><%= tag %></a>
+							  <% } %>
+							<% }) %>
+						</span>
+					<% } %>
+						<span class="float-r"><%= post.time.minute %></span>
+					</div>
+				</article>
+				<hr class="separate pos-rela"/>
+					<% }) %>
+				<% include paging %>
+			</div>
+			<% include footer %>
+			<script>
+				$(document).ready(function () {
+					var $head = $('.head');
+					var $img = $('.bg-image img');
+					var imgae_Height = $img.height();
+					var image_Width = $img.width();
+					$img[0].onload= function () {
+						imgae_Height = $img.height();
+						image_Width = $img.width();
+						setImage();
+					}
+					function setImage () {
+
+						var h,w;
+						var head_Height = $head.outerHeight();
+						var head_Width = $head.outerWidth();
+						if ((head_Height / head_Width) >= (imgae_Height / image_Width)) {
+							h = head_Height;
+							w = head_Height * (image_Width / imgae_Height);
+						} else {
+							w = head_Width;
+							h = head_Width * (imgae_Height / image_Width);
+						}
+						$img.css({
+							'height': h,
+							'width': w
+						})
+					};
+					$(window).resize(function () {
+						setImage();
+					});
+				})
+
+			</script>
+		</div> -->
+	</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+		<link rel="stylesheet" href="/css/post.css"/>
+	</head>
+	<body>
+		<div class="post">
+			<div class="navbar navbar-static-top">
+				<div class="container clearfix">
+					<a class="logo float-l" href="/">HwH</a>
+					<ul class="nav navbar-nav clearfix float-l">
+						<li>
+							<a href="/">首页</a>
+						</li>
+						<li class="active">
+							<a href="/post" title="发布文章">发布文章</a>
+						</li>
+						<li>
+							<a href="/posted/<%= user.name %>" title="个人文章中心">个人文章中心</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav clearfix float-r">
+						<li>
+							<a href="/info/<%= user.name %>" class="user_head" title="<%= user.name %>">
+								<img src="<%= user.head %>" alt="<%= user.name %>">
+							</a>
+						</li>
+						<li class="logout">
+							<a href="/logout">退出</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="post-content">
+				<div class="progress" id="progress-container">
+					<div class="progress-bar" id="progress-bar"></div>
+				</div>
+				<div class="textarea clearfix pos-rela">
+					<div class="post-title">
+						<input type="text" class="post-title_input" id="title" placeholder="文章标题">
+					</div>
+					<div class="editor-container" id="editor-container">
+						<div class="editor">
+							<textarea id="post"  name="post"></textarea>
+						</div>
+					</div>
+					<div class="preview-container">
+						<div class="preview">
+							<div id="preview"></div>
+						</div>
+					</div>
+					<div class="submit-container clearfix">
+						<form class="navbar-form clearfix" method="post">
+							<span class="add-on icon icon-tags"></span>
+							<input type="text" name="tag" id="tag" class="text tag" placeholder="标签1，标签2，标签3...">
+							<button type="button" id="post-btn" class="btn float-r">发布</button>
+							<a href="javascript:;" class="btn btn-preview float-r">预览</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% include footer %>
+		<input type="hidden" id="hidden" value="<%= user.name %>">
+		<script src="/js/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="/js/markdown.js"></script>
+		<script src="/js/jquery.noty.packaged.min.js"></script>
+        <script src="/js/markdown_extend.js"></script>
+		<script src="/js/postImg.js"></script>
+		<script>
+			Preview.enable();
+		</script>
+  </body>
+</html>

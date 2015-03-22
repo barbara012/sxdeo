@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>	
+	<body>
+		<div class="search-page">
+			<div id="container" class="container">
+				<div id="list">
+				<% var lastYear = 0 %>
+				<% posts.forEach(function (post, index) { %>
+						<% if (lastYear != post.time.year) { %>
+					<div><h3><%= post.time.year %></h3></div>
+						<% lastYear = post.time.year } %>
+					<% if (index == 0) { %>
+					<div class="title-item first">
+						<a class="article-btn clearfix" href="/p/<%= post.name %>/<%= post._id %>">
+							<span class="spa1"><%= post.title %></span>
+							<span class="spa2">
+								<span>作者：<%= post.name %></span>
+								<span><%= post.time.day %></span>
+							</span>
+						</a>
+					</div>
+					<% } else { %>
+					<div class="title-item">
+						<a class="article-btn clearfix" href="/p/<%= post.name %>/<%= post._id %>">
+							<span class="spa1"><%= post.title %></span>
+							<span class="spa2">
+								<span>作者：<%= post.name %></span>
+								<span><%= post.time.day %></span>
+							</span>
+						</a>
+					</div>
+					<% } %>
+				<% }) %>
+				</div>
+			</div>
+		</div>
+		<% include footer %>		
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="user-set">
+			<nav class="navbar navbar-static-top">
+				<div class="clearfix container">
+					<a class="logo float-l" href="/">HwH</a>
+					<ul class="nav navbar-nav float-l">
+						<li>
+							<a href="/" title="返回首页">首页</a>
+						</li>
+						<li class="active">
+							<a href="/set" title="设置">设置</a>
+						</li>
+						<li>
+							<a href="/posted/<%= user.name %>" title="个人文章中心">个人文章中心</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav float-r">
+						<li>
+							<a href="/u/<%= user.name %>" class="user_head" title="<%= user.name %>">
+								<img src="<%= user.head %>" alt="<%= user.name %>">
+							</a>
+						</li>
+						<li class="navbar-right logout">
+							<a href="/logout">退出</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="main clearfix">
+				<div class="content">
+					<div class="left">
+						<a href="#">修改密码</a>
+					</div>
+					<div class="right">
+						<div class="form">
+							<form action="/update/<%= user.name %>" method="post">
+								<label for="new-password">新密码</label>
+								<input type="text" name="password" id="new-password" class="text">
+								<button class="btn btn-submit" type="submit">修改</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% include footer %>
+	</body>
+</html>
