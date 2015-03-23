@@ -4,102 +4,92 @@
 		<% include head %>
 	</head>
 	<body>
-		<!-- <div class="home-page">
-			<nav class="navbar navbar-static-top">
-				<div class="container clearfix">
-					<a class="logo float-l" href="/">HwH</a>
-					<ul class="nav navbar-nav clearfix float-r">
-						<li class="active"><a href="/">首页</a></li>
-						<li><a href="/post">发布文章</a></li>
-						<% if (user) { %>
-							<%if (user.name === 'kai') {%>
-							<li><a href="/mars">火星票</a></li>
-							<% } %>
-							<%if (user.name === 'huwenhua012') {%>
-							<li><a href="/set">设置</a></li>
-							<% } %>
-						<li><a href="/discuss">讨论</a></li>
-						<li><a href="/logout">退出</span></a></li>
-						<% } else {%>
-						<li><a href="/login">登录</span></a></li>
-						<% } %>
+		<div class="home-page">
+			<div class="page-nav">
+				<div class="nav-content common-w clearfix">
+					<div class="logo-container float-l">
+						<a href="/"><img src="/img/logo.png" alt="迪奥电梯"></a>
+					</div>
+					<ul class="nav__menu float-l clearfix">
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">首页</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">关于我们</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">产品展示</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">客户案例</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">留言板</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">联系我们</a></li>
 					</ul>
 				</div>
-			</nav>
-
-			<div class="head">
-				<div class="bg-image">
-					<img src="http://7u2fwf.com1.z0.glb.clouddn.com/img/bg.jpg" alt="西湖">
-				</div>
-				<div class="operate">
-				</div>
-				<div class="user-head">
-					<% if (user) {%>
-					<a href="javascript:;" title="<%= user.name %>"><img alt="<%= user.name %>" src="<%= user.head %>"></a>
-					<% } else {%>
-					<a href="javascript:;" title="鬼冢英吉"><img alt="GTO" src="https://avatars3.githubusercontent.com/u/3634578?s=460"></a>
-					<%}%>
+			</div>
+			<div class="home-banner-slider">
+				<ul>
+					<li><a href="/" class="slider__item slider__item1"></a></li>
+					<li><a href="/" class="slider__item slider__item2"></a></li>
+					<li><a href="/" class="slider__item slider__item3"></a></li>
+				</ul>
+				<a href="#" class="unslider-arrow prev">Previous slide</a>
+				<a href="#" class="unslider-arrow next">Next slide</a>
+			</div>
+			<div class="cnt cnt-about-us">
+				<div class="common-w">
+					<div class="cnt__title txt-c">公司介绍</div>
+					<div class="cnt__banner"></div>
+					<div class="cnt-as__slider">
+						<ul>
+							<li><a href="/" class="slider__item slider__item1">你们</a></li>
+							<li><a href="/" class="slider__item slider__item2">他们</a></li>
+							<li><a href="/" class="slider__item slider__item3">我们</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
-			<div class="body">
-					<% posts.forEach(function (post, index) { %>
-				<article class="pos-rela">
-					<h1><a href="/p/<%= post.name %>/<%= post._id %>" class="title"><%= post.title.replace('<span>','').replace('</span>', '') %></a></h1>
-					<div class="article">
-						<%- post.post.replace(/(<img)(.*)(\/>)/g,'(图片)').substr(0, 200) + "···" %>
-					</div>
-					<div class="info clearfix">
-					<% if (post.tags.length > 0 && post.tags[0]) { %>
-						<span class="float-l">标签：
-							<% post.tags.forEach(function (tag, index) { %>
-							  <% if (tag) { %>
-								<a class="tag" href="/tags/<%= tag %>"><%= tag %></a>
-							  <% } %>
-							<% }) %>
-						</span>
-					<% } %>
-						<span class="float-r"><%= post.time.minute %></span>
-					</div>
-				</article>
-				<hr class="separate pos-rela"/>
-					<% }) %>
-				<% include paging %>
+			<div class="cnt cnt-technology">
+				<div class="common-w">
+					<div class="cnt__title txt-c">公司介绍</div>
+				</div>
+			</div>
+			<div class="cnt cnt-products">
+				<div class="common-w">
+					<div class="cnt__title txt-c">公司介绍</div>
+				</div>
+			</div>
+			<div class="cnt cnt-culture">
+				<div class="common-w">
+					<div class="cnt__title txt-c">公司介绍</div>
+				</div>
+			</div>
+			<div class="cnt cnt-addr">
+				<div class="common-w">
+					<div class="cnt__title txt-c">公司介绍</div>
+				</div>
+			</div>
+			<div class="cnt cnt-contact-us">
+				<div class="common-w">
+					<div class="cnt__title txt-c">公司介绍</div>
+				</div>
 			</div>
 			<% include footer %>
-			<script>
-				$(document).ready(function () {
-					var $head = $('.head');
-					var $img = $('.bg-image img');
-					var imgae_Height = $img.height();
-					var image_Width = $img.width();
-					$img[0].onload= function () {
-						imgae_Height = $img.height();
-						image_Width = $img.width();
-						setImage();
-					}
-					function setImage () {
-
-						var h,w;
-						var head_Height = $head.outerHeight();
-						var head_Width = $head.outerWidth();
-						if ((head_Height / head_Width) >= (imgae_Height / image_Width)) {
-							h = head_Height;
-							w = head_Height * (image_Width / imgae_Height);
-						} else {
-							w = head_Width;
-							h = head_Width * (imgae_Height / image_Width);
-						}
-						$img.css({
-							'height': h,
-							'width': w
-						})
-					};
-					$(window).resize(function () {
-						setImage();
-					});
-				})
-
-			</script>
-		</div> -->
+		</div>
+		<script>
+			$(function () {
+				var homeSlider = $('.home-banner-slider').unslider({
+					speed: 500,
+					delay: 3000,
+					keys: true,
+					dots: true
+				});
+				$('.home-banner-slider .unslider-arrow').click(function () {
+					var fn = this.className.split(' ')[1];
+					homeSlider.data('unslider')[fn]();
+				});
+				var cntASSlider = $('.cnt-as__slider').unslider({
+					speed: 500,
+					delay: 3000,
+					keys: true,
+					dots: true
+				});
+			});
+		</script>
 	</body>
 </html>
