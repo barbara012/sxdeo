@@ -67,12 +67,23 @@ code {
 	margin-left: auto;
 	margin-right: auto;
 }
+.page__bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 100%;
+	height: 100%;
+}
 .page-nav {
 	border-bottom: 3px solid #015198;
 	font-size: 16px;
+	background-color: #fff;
+	position: relative;
 	.logo-container {
 		margin-right: 80px;
 		font-size: 0;
+		width: 119px;
+		height: 77px;
 	}
 	.menu__item_txt {
 		line-height: 80px;
@@ -81,6 +92,9 @@ code {
 		color: #333;
 		text-decoration: none;
 		padding: 0 20px;
+		&.active {
+			color: #015198;
+		}
 		&:hover {
 			color: #015198;
 		}
@@ -88,7 +102,6 @@ code {
 }
 .home-banner-slider {
 	position: relative;
-	overflow: auto;
 	width: 100%;
 	// .swiper-container {
 	// 	width: 100%;
@@ -112,39 +125,58 @@ code {
 	.slider__item2 {
 		background-image: url(/img/banner1.jpg)
 	}
-	.dots {
-		text-align: center;
+	.hd {
 		position: absolute;
-		width: 100%;
 		bottom: 20px;
-		left: 0;
-	}
-	.dot {
-		display: inline-block;
-		vertical-align: middle;
-		margin: 0 10px;
-		width: 20px;
-		height: 20px;
-		line-height: 20px;
-		border-radius: 10px;
-		cursor: pointer;
-		color: #fff;
-		&.active {
-			background-color: #000;
+		width: 100%;
+		text-align: center;
+		z-index: 10;
+		li {
+			width: 16px;
+			height: 16px;
+			display: inline-block;
+			vertical-align: middle;
+			border: 3px solid #ffffff;
+			background-color: #fff;
+			border-radius: 10px;
+			text-indent: 99999px;
+			margin: 0 20px;
+			&.on {
+				background-color: transparent;
+			}
 		}
 	}
+}
+.bg {
+	position: absolute;
+}
+.about-us,
+.new-center {
+	height: 100%;
+	widows: 100%;
+	position: relative;
 }
 .home-page {
 	.cnt {
 		padding: 50px 0;
+		height: 600px;
 	}
 	.cnt__title {
 		height: 100px;
 	}
 	.cnt-as__slider {
 		position: relative;
-		overflow: auto;
 		width: 100%;
+	}
+	.hd {
+		text-align: center;
+		padding-top: 15px;
+		overflow: hidden;
+		li {
+			display: inline-block;
+			vertical-align: middle;
+			text-indent: 99999px;
+		}
 	}
 	.cnt-about-us {
 		// .swiper-slide {
@@ -160,9 +192,513 @@ code {
 		.slider__item3 {
 			background: #0078b6;
 		}
+		.cnt__banner {
+			height: 103px;
+			margin-bottom: 50px;
+			background-position: center;
+			background-image: url(/img/index/about-us.jpg);
+		}
+		.hd {
+			li {
+				width: 12px;
+				height: 12px;
+				border-radius: 10px;
+				background-color: #cfcfcf;
+				margin: 0 15px;
+				&.on {
+					background-color: #015198;
+				}
+			}
+		}
+		.next,
+		.prev {
+			position: absolute;
+			width: 45px;
+			height: 95px;
+			top: 50%;
+			margin-top: -47px;
+			background-image: url(/img/index/icon.png);
+			text-indent: -99999px;
+		}
+		.prev {
+			left: 20px;
+			background-position: 0 -276px;
+		}
+		.next {
+			right: 20px;
+			background-position: -45px -276px;
+		}
+	}
+	.cnt-technology {
+		.tab__nav {
+			font-size: 0;
+		}
+		.tab__nav__item {
+			font-size: 18px;
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0 50px;
+			color: #015198;
+		}
+		.icon {
+			width: 138px;
+			height: 138px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 20px;
+			background-image: url(/img/index/icon.png);
+		}
+		.icon-lv {
+			background-position: 0 -138px;
+		}
+		.icon-ll {
+			background-position: -138px -138px;
+		}
+		.icon-yj {
+			background-position: -276px -138px;
+		}
+		.icon-sj {
+			background-position: -414px -138px;
+		}
+		.active {
+			.icon-lv {
+				background-position: 0 0;
+			}
+			.icon-ll {
+				background-position: -138px 0;
+			}
+			.icon-yj {
+				background-position: -276px 0;
+			}
+			.icon-sj {
+				background-position: -414px 0;
+			}
+		}		
+	}
+	.cnt-technology {
+		background-color: #f8f8f8
+	}
+	.cnt-products {
+		.common-w {
+			position: relative;
+		}
+		.hd {
+			position: relative;
+			padding-top: 30px;
+			li {
+				font-size: 20px;
+				margin: 0 30px;
+				color: #666;
+				text-indent: 0;
+				&.on {
+					color: #015198;
+				}
+			}
+		}
+		.prev,
+		.next {
+			position: absolute;
+			top: 10px;
+			width: 13px;
+			height: 25px;
+			background-image: url(/img/index/icon.png);
+		}
+		.prev {
+			left: 0;
+			background-position: 0 -367px;
+		}
+		.next {
+			right: 0;
+			background-position: -13px -367px;
+		}
+	}
+	.cnt-products__slider {
+		width: 970px;
+		margin-right: auto;
+		margin-left: auto;
+		.slider__item {
+			height: 330px;
+			display: block;
+			font-size: 0;
+		}
+	}
+	.cnt-culture {
+		background-color: #004b97;
+	}
+	.cnt-culture__content {
+		width: 650px;
+		height: 360px;
+		margin-right: auto;
+		margin-left: auto;
+		background-color: #fff;
+		border-radius: 3px;
+		font-size: 18px;
+		padding-top: 40px;
+		line-height: 2.2;
+		.p1 {
+			margin-bottom: 30px;
+		}
+	}
+	.cnt-addr__content {
+		font-size: 18px;
+		p {
+			text-indent: 37px;
+		}
+		.map {
+			margin: 15px 0 30px;
+			height: 254px;
+			background-image: url(/img/index/map.jpg);
+			background-position: center;
+		}
+		.span {
+			margin: 0 40px;
+		}
+	}
+	.footer {
+		position: static;
 	}
 }
-
+.footer {
+	width: 100%;
+	height: 80px;
+	background-color: #fff;
+	border-top: 3px solid #015198;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	.float-l {
+		padding-top: 17px;
+	}
+	.logo {
+		width: 165px;
+		height: 77px;
+		display: block;
+		background-image: url(/img/logo_w.png);
+	}
+}
+.about-us,
+.new-center {
+	background-color: #cfcfcf;
+}
+.viewport {
+	width: 1024px;
+	height: 550px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: #fff;
+	&.viewport_tab {
+		height: 603px;
+	}
+	.tab__nav {
+		height: 53px;
+		border-bottom: 3px solid #015198;
+	}
+	.tab__nav__item {
+		float: left;
+		display: block;
+		text-align: center;
+		line-height: 53px;
+		width: 1024px / 6;
+		text-decoration: none;
+		border-left: 2px solid #015198;
+		font-size: 16px;
+		&:first-child {
+			border-left-width: 0;
+		}
+		&.active {
+			background-color: #015198;
+			color: #fff;
+		}
+	}
+	.viewport__content {
+		height: 550px;
+		padding: 30px 30px;
+	}
+	&.viewport_tab {
+		.viewport__content {
+			padding: 30px 0;
+		}		
+	}
+	.tab__content__cnt {
+		overflow: auto;
+		padding: 0 30px;
+		height: 100%;
+	}
+	&.viewport_ps {
+		.tab__content__cnt {
+			padding: 0 10px;
+		}
+	}
+	.as__banner {
+		margin-bottom: 20px;
+	}
+	.des {
+		line-height: 2;
+		p {
+			text-indent: 30px;
+			margin-bottom: 5px;
+		}
+	}
+	.ele-list {
+		text-align: center;
+	}
+	.ele__item {
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 12px;
+		margin-bottom: 30px;
+		width: 220px;
+		text-align: normal;
+		&.first {
+			margin-left: 0;
+		}
+	}
+	.eve__pic {
+		text-align: center;
+	}
+	.gg {
+		.ele__item {
+			margin: 0 14px;
+		}
+	}
+	.dd {
+		.ele__item {
+			width: 310px;
+			margin: 0 11px;
+		}
+	}
+	.wj {
+		.ele__detail-des {
+			padding-top: 50px;
+		}
+		.float-l {
+			width: 50%;
+		}
+		.ele__name {
+			font-size: 24px;
+			margin-bottom: 15px;
+		}
+		.des__block {
+			margin-bottom: 15px;
+		}
+		p {
+			line-height: 2;
+		}
+		.p1 {
+			color: #015198;
+		}
+	}
+}
+.tab__content__cnt {
+	display: none;
+	&.active {
+		display: block;
+	}
+}
+.viewport_new-list,
+.viewport_custom-case,
+.viewport_recruit,
+.viewport_c_us {
+	.viewport__title {
+		font-size: 40px;
+		font-weight: normal;
+		line-height: 1.2;
+		border-bottom: 1px solid #015198;
+	}
+}
+.viewport_new-list {
+	.news__list {
+		padding: 20px 0;
+	}
+	.new__item {
+		margin-bottom: 10px;
+	}
+	.new__title {
+		color: #333;
+		&:before {
+			content: "";
+			width: 6px;
+			height: 6px;
+			display: inline-block;
+			vertical-align: 0;
+			border: 2px solid #015198;
+			border-radius: 6px;
+			margin-right: 5px;
+		}
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.new__date {
+		color: #a0a0a0;
+	}
+}
+.new-single-page,
+.job-info {
+	background-color: #e5e5e5;
+	.page-nav {
+		margin-bottom: 50px;
+	}
+	.footer {
+		position: static;
+	}
+}
+.new-sp__content,
+.job-content {
+	margin-bottom: 50px;
+	background-color: #ffffff;
+	padding: 40px;
+	.title {
+		text-align: center;
+	}
+}
+.new-sp__content {	
+	.new__detail {
+		padding: 10px 0;
+	}
+	.new__pic {
+		margin-bottom: 20px;
+		img {
+			border: 2px solid #ffffff;
+			box-shadow: 0 0 3px rgba(0,0,0,0.2);
+		}
+	}
+	p {
+		line-height: 2;
+		text-indent: 30px;
+		margin-bottom: 20px;
+	}
+}
+.contact-us {
+	.contact-way {
+		padding-top: 20px;
+	}
+	.map {
+		font-size: 0;
+		margin-bottom: 20px;
+	}
+	.way__detail {
+		overflow: hidden;
+	}
+	.way__item {
+		float: left;
+		margin-left: 17px;
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+.job-info {
+	.job-content {
+		padding-left: 150px;
+		padding-right: 150px;
+	}
+	.title {
+		margin-bottom: 20px;
+	}
+	.job__req {
+		overflow: hidden;
+		padding-bottom: 15px;
+		border-bottom: 1px solid #cfcfcf;
+	}
+	.job__req_item {
+		float: left;
+		width: 25%;
+	}
+	.job__des {
+		padding-top: 25px;
+	}
+	.job__des_item {
+		margin-bottom: 30px;
+		line-height: 2;
+	}
+	h4 {
+		margin-bottom: 5px;
+	}
+	ol {
+		list-style-position: inside;
+	}
+}
+.custom-case {
+	.viewport__content {
+		overflow: hidden;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.title-wrapper {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.case-wrapper {
+		overflow: auto;
+		padding-left: 30px;
+		padding-right: 30px;
+		height: 502px - 80px;
+		font-size: 0;
+		text-align: center;
+	}
+	.case-list {
+		padding-top: 30px;
+	}
+	.case__item {
+		width: 450px;
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 10px 20px;
+		img {
+			width: 100%;
+		}
+	}
+	.case__title {
+		background-color: #015198;
+		background-color: rgba(1, 81, 152,0.8);
+		height: 30px;
+		font-size: 14px;
+		line-height: 30px;
+		padding-left: 15px;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		color: #ffffff;
+		text-align: left;
+	}
+}
+.recruit {
+	.job_list {
+		padding-top: 10px;
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		border-width: 0;
+		text-align: center;
+		a {
+			color: #333;
+		}
+	}
+	tr {
+		line-height: 30px;
+		&:first-child {
+			color: #015198;
+			line-height: 35px;
+		}
+		th,
+		td {
+			&:first-child {
+				text-align: left;
+			}
+			&:last-child {
+				text-align: right;
+			}
+		}
+	}
+}
 
 
 

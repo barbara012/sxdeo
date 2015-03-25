@@ -15,91 +15,167 @@ module.exports = function (app) {
 
 	app.get('/', function (req, res) {
 		//判断是否是第一页，并把请求的页数转换成 number 类型
-		var page = req.query.p ? parseInt(req.query.p) : 1;
+		// var page = req.query.p ? parseInt(req.query.p) : 1;
 		//查询并返回第 page 页的 10 篇文章
-		Post.getTen(null, page, function (err, posts, total) {
-			if (err) {
-				posts = [];
-			}
-			res.render('index', {
-				title: '首页',
-				posts: posts,
-				page: page,
-				isFirstPage: (page - 1) == 0,
-				isLastPage: ((page - 1) * 10 + posts.length) == total,
-				user: req.session.user,
-				success: req.flash('success').toString(),
-				error: req.flash('error').toString()
-			});
+		// Post.getTen(null, page, function (err, posts, total) {
+		// 	if (err) {
+		// 		posts = [];
+		// 	}
+			
+		// });
+		res.render('index', {
+			title: '首页',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
 		});
 	});
 	//注册
-	app.post('/reg', checkNotLogin);
-	app.post('/reg', function (req, res) {
-		var name = req.body.regUserName,
-			password = req.body.regPassword,
-			md5 = crypto.createHash('md5'),
-			email = req.body.regEmail,
-			reg = /`|~|!|@|#|\$|%|\^|\*|\(|\-|\)|\+|_|=|\/|\||\\|。|，|》|《|>|<|！/;
-		password = md5.update(req.body.regPassword).digest('hex');
-		if (reg.test(name)) {
-			return res.send(
-				{
-					type: 3,
-					mes: '包含非法字符。可以包含英文字母，数字，和三个符号 - . _'
-				}
-			);//返回注册页
-		}
-		if (name.length > 20) {
-			return res.send(
-				{
-					type: 4,
-					mes: '超过20个字符！'
-				}
-			);//返回注册页
-		}
-		var newUser = new User({
-			name: name,
-			password: password,
-			email: email
+	// app.post('/reg', checkNotLogin);
+	// app.post('/reg', function (req, res) {
+	// 	var name = req.body.regUserName,
+	// 		password = req.body.regPassword,
+	// 		md5 = crypto.createHash('md5'),
+	// 		email = req.body.regEmail,
+	// 		reg = /`|~|!|@|#|\$|%|\^|\*|\(|\-|\)|\+|_|=|\/|\||\\|。|，|》|《|>|<|！/;
+	// 	password = md5.update(req.body.regPassword).digest('hex');
+	// 	if (reg.test(name)) {
+	// 		return res.send(
+	// 			{
+	// 				type: 3,
+	// 				mes: '包含非法字符。可以包含英文字母，数字，和三个符号 - . _'
+	// 			}
+	// 		);//返回注册页
+	// 	}
+	// 	if (name.length > 20) {
+	// 		return res.send(
+	// 			{
+	// 				type: 4,
+	// 				mes: '超过20个字符！'
+	// 			}
+	// 		);//返回注册页
+	// 	}
+	// 	var newUser = new User({
+	// 		name: name,
+	// 		password: password,
+	// 		email: email
+	// 	});
+	// 	//检查用户名与邮箱是否已经存在
+	// 	User.CheckNameEmail(newUser.name, newUser.email, function (err, type) {
+	// 		if (type === 'name') {
+	// 			return res.send(
+	// 				{
+	// 					type: 1,
+	// 					mes: '用户名已经存在！'
+	// 				}
+	// 			);//返回注册页
+	// 		} else if (type === 'email'){
+	// 			return res.send(
+	// 				{
+	// 					type: 3,
+	// 					mes: '邮箱已经存在！'
+	// 				}
+	// 			);//返回注册页
+	// 		}
+	// 		//如果不存在则新增用户
+	// 		newUser.save(function (err, user) {
+	// 			if (err) {
+	// 				req.flash('error', err);
+	// 				return res.send(
+	// 					{
+	// 						type: 2,
+	// 						mes: '系统繁忙！'
+	// 					}
+	// 				);//返回注册页
+	// 			}
+	// 			req.session.user = user;//用户信息存入 session
+	// 			req.flash('success', '注册成功！');
+	// 			return res.send(
+	// 				{
+	// 					type: 0,
+	// 					mes: '注册成功！'
+	// 				}
+	// 			);//返回注册页
+	// 		});
+	// 	});
+	// });
+	//关于我们
+	app.get('/about_us', function (req, res) {
+		res.render('about_us', {
+			title: '关于我们',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
 		});
-		//检查用户名与邮箱是否已经存在
-		User.CheckNameEmail(newUser.name, newUser.email, function (err, type) {
-			if (type === 'name') {
-				return res.send(
-					{
-						type: 1,
-						mes: '用户名已经存在！'
-					}
-				);//返回注册页
-			} else if (type === 'email'){
-				return res.send(
-					{
-						type: 3,
-						mes: '邮箱已经存在！'
-					}
-				);//返回注册页
-			}
-			//如果不存在则新增用户
-			newUser.save(function (err, user) {
-				if (err) {
-					req.flash('error', err);
-					return res.send(
-						{
-							type: 2,
-							mes: '系统繁忙！'
-						}
-					);//返回注册页
-				}
-				req.session.user = user;//用户信息存入 session
-				req.flash('success', '注册成功！');
-				return res.send(
-					{
-						type: 0,
-						mes: '注册成功！'
-					}
-				);//返回注册页
-			});
+	});
+	//新闻中心
+	app.get('/new_center', function (req, res) {
+		res.render('new_center', {
+			title: '新闻中心',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//新闻1
+	app.get('/newone', function (req, res) {
+		res.render('newone', {
+			title: '陕西帝奥电梯有限公司代理商来厂参观学习',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//新闻2
+	app.get('/newtwo', function (req, res) {
+		res.render('newtwo', {
+			title: '省市领导对帝奥电梯项目的关心重视',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//产品展示
+	app.get('/product_show', function (req, res) {
+		res.render('product_show', {
+			title: '产品展示',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//案例展示
+	app.get('/custom_case', function (req, res) {
+		res.render('custom_case', {
+			title: '客户案例展示',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//人力资源
+	app.get('/recruit', function (req, res) {
+		res.render('recruit', {
+			title: '人力资源',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//人力资源1
+	app.get('/jobone', function (req, res) {
+		res.render('jobone', {
+			title: '秘书长',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//人力资源2
+	app.get('/jobtwo', function (req, res) {
+		res.render('jobtow', {
+			title: '行政助理',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
+	//联系我们
+	app.get('/contact_us', function (req, res) {
+		res.render('contact_us', {
+			title: '联系我们',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
 		});
 	});
 	//登录
