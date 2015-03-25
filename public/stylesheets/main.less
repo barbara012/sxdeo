@@ -157,6 +157,9 @@ code {
 	position: relative;
 }
 .home-page {
+	font-size: 18px;
+	color: #666;
+	position: relative;
 	.cnt {
 		padding: 50px 0;
 		height: 600px;
@@ -166,7 +169,9 @@ code {
 	}
 	.cnt-as__slider {
 		position: relative;
-		width: 100%;
+		width: 870px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 	.hd {
 		text-align: center;
@@ -176,21 +181,23 @@ code {
 			display: inline-block;
 			vertical-align: middle;
 			text-indent: 99999px;
+			cursor: pointer;
 		}
 	}
 	.cnt-about-us {
 		// .swiper-slide {
 		// 	height: 200px;
 		// }
+		p {
+			text-indent: 37px;
+		}
 		.slider__item {
 			height: 200px;
 			display: block;
 		}
 		.slider__item1 {
-			background: #cfcfcf;
 		}
 		.slider__item3 {
-			background: #0078b6;
 		}
 		.cnt__banner {
 			height: 103px;
@@ -216,25 +223,30 @@ code {
 			width: 45px;
 			height: 95px;
 			top: 50%;
-			margin-top: -47px;
+			margin-top: -100px;
 			background-image: url(/img/index/icon.png);
 			text-indent: -99999px;
 		}
 		.prev {
-			left: 20px;
-			background-position: 0 -276px;
+			left: -65px;
+			background-position: 0 -272px;
 		}
 		.next {
-			right: 20px;
+			right: -65px;
 			background-position: -45px -276px;
 		}
 	}
 	.cnt-technology {
+		p {
+			text-indent: 37px;
+		}
+		.cnt__title {
+			margin-bottom: 40px;
+		}
 		.tab__nav {
 			font-size: 0;
 		}
 		.tab__nav__item {
-			font-size: 18px;
 			display: inline-block;
 			vertical-align: middle;
 			margin: 0 50px;
@@ -273,6 +285,9 @@ code {
 			.icon-sj {
 				background-position: -414px 0;
 			}
+		}
+		.tab__content__cnt {
+			padding-top: 60px;
 		}		
 	}
 	.cnt-technology {
@@ -298,7 +313,7 @@ code {
 		.prev,
 		.next {
 			position: absolute;
-			top: 10px;
+			top: 30px;
 			width: 13px;
 			height: 25px;
 			background-image: url(/img/index/icon.png);
@@ -332,7 +347,6 @@ code {
 		margin-left: auto;
 		background-color: #fff;
 		border-radius: 3px;
-		font-size: 18px;
 		padding-top: 40px;
 		line-height: 2.2;
 		.p1 {
@@ -340,7 +354,6 @@ code {
 		}
 	}
 	.cnt-addr__content {
-		font-size: 18px;
 		p {
 			text-indent: 37px;
 		}
@@ -354,8 +367,52 @@ code {
 			margin: 0 40px;
 		}
 	}
+	.cnt-contact-us {
+		height: 680px;
+		background-image: url(/img/index/cs_bg.jpg);
+		background-position: center;
+		position: relative;
+	}
+	.cnt-cs_content {
+		width: 600px;
+		height: 290px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -135px;
+		margin-left: -300px;
+		.form__item {
+			margin-bottom: 10px;
+		}
+		.field-container {
+			background-color: #fff;
+		}
+		.field-container_name,
+		.field-container_mail {
+			width: 285px;
+		}
+		.text,
+		.text-area {
+			outline: none;
+			width: 100%;
+			display: block;
+			border: none;
+			font-size: 16px;
+		}
+		.text {
+			height: 40px;
+			padding: 5px 10px;
+		}
+		.text-area {
+			padding: 10px;
+			height: 240px;
+			resize: none;
+		}
+	}
 	.footer {
-		position: static;
+		background-color: rgba(0,0,0,0.6);
+		color: #fff;
+		font-size: 14px;
 	}
 }
 .footer {
@@ -367,7 +424,8 @@ code {
 	bottom: 0;
 	left: 0;
 	.float-l {
-		padding-top: 17px;
+		padding-top: 12px;
+		line-height: 2;
 	}
 	.logo {
 		width: 165px;
