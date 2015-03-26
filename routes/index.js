@@ -164,7 +164,7 @@ module.exports = function (app) {
 	});
 	//人力资源2
 	app.get('/jobtwo', function (req, res) {
-		res.render('jobtow', {
+		res.render('jobtwo', {
 			title: '行政助理',
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
