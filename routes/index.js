@@ -130,6 +130,14 @@ module.exports = function (app) {
 			error: req.flash('error').toString()
 		});
 	});
+	//新闻3
+	app.get('/newthree', function (req, res) {
+		res.render('newthree', {
+			title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		});
+	});
 	//产品展示
 	app.get('/product_show', function (req, res) {
 		res.render('product_show', {
