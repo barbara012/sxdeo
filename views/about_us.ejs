@@ -76,12 +76,39 @@
 						</div>
 					</div>
 					<div class="tab__content__cnt">
-						<div class="as__banner txt-c">
-							<img src="/img/about_us/banner6.jpg" alt="公司资质">
-						</div>
-						<div class="des">
-							<p>德国品牌DIAO ELEVATOR（帝奥）电梯以其最高的安全标准、卓越的品质、优雅的外观、先进的技术及工艺很早就享誉欧洲。</p>
-							<p>陕西帝奥电梯有限公司承袭德国先进技术，并以其严谨高效的管理、优质的售后服务及合理的价格在业界赢得了良好的信誉，实现了稳步向上的发展轨迹。DIAO ELEVATOR（帝奥）品牌电梯从德国来到中国，带来了尖端和成熟的技术，完美的设计风格以及超前的服务理念。陕西帝奥电梯有限公司的成立，标志着德国DIAO ELEVATOR（帝奥）品牌电梯全面进入中国西部市场。</p>
+						<div class="zz__slider">
+							<div class="bd">
+								<ul class="pic-list">
+									<li>
+										<img src="/img/about_us/zz/1.jpg" alt="荣誉证书">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/2.jpg" alt="荣誉证书">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/3.jpg" alt="荣誉证书">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/4.jpg" alt="荣誉证书">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/5.jpg" alt="税务登记证">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/6.jpg" alt="相关许可证">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/7.jpg" alt="相关证书">
+									</li>
+									<li>
+										<img src="/img/about_us/zz/8.jpg" alt="组织结构代码正本">
+									</li>
+								</ul>
+							</div>
+							<div class="hd">
+								<a class="next"></a>
+								<a class="prev"></a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -91,6 +118,14 @@
 		<script type="text/javascript">
 			$(function () {
 				Tab.enable();
+				jQuery(".zz__slider").slide({
+					titCell: ".hd ul",
+					mainCell: ".bd ul",					
+					effect:"left",
+					autoPage: true,
+					vis:1,
+					trigger:"click"
+				});
 			});
 		</script>
 	</body>
