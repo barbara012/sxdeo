@@ -549,30 +549,49 @@ code {
 	}
 	.zz__slider {
 		width: 580px;
+		margin-top: 30px;
 		margin-left: auto;
 		margin-right: auto;
 		position: relative;
-		li {
-			width: 580px;
-		}
 		img {
 			width: 580px;
 		}
+		.hd {
+			text-align: center;
+			font-size: 0;
+			padding-top: 10px;
+			li {
+				font-size: 12px;
+				line-height: 20px;
+				height: 20px;
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0 4px;
+				padding: 0 2px;
+				border-radius: 2px;
+				&.on {
+					background-color: #015198;
+					color: #fff;
+				}
+			}
+		}
 		.next,
 		.prev {
-			width: 100px;
-			height: 100px;
-			border-radius: 50px;
-			border: 3px solid #015198;
 			position: absolute;
+			width: 45px;
+			height: 95px;
 			top: 50%;
 			margin-top: -50px;
-		}
-		.next {
-			right: -120px;
+			background-image: url(/img/index/icon.png);
+			text-indent: -99999px;
 		}
 		.prev {
-			left: -120px;
+			left: -100px;
+			background-position: 0 -272px;
+		}
+		.next {
+			right: -100px;
+			background-position: -45px -276px;
 		}
 	}
 	.des {

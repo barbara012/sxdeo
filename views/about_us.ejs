@@ -82,32 +82,58 @@
 									<li>
 										<img src="/img/about_us/zz/1.jpg" alt="荣誉证书">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/2.jpg" alt="荣誉证书">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/3.jpg" alt="荣誉证书">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/4.jpg" alt="荣誉证书">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/5.jpg" alt="税务登记证">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/6.jpg" alt="相关许可证">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/7.jpg" alt="相关证书">
 									</li>
+								</ul>
+								<ul class="pic-list">
 									<li>
 										<img src="/img/about_us/zz/8.jpg" alt="组织结构代码正本">
 									</li>
 								</ul>
 							</div>
 							<div class="hd">
-								<a class="next"></a>
-								<a class="prev"></a>
+								<div class="arrow">
+									<a class="next"></a>
+									<a class="prev"></a>
+								</div>
+								<ul >
+									<li>荣誉证书1</li>
+									<li>荣誉证书2</li>
+									<li>荣誉证书3</li>
+									<li>荣誉证书4</li>
+									<li>税务登记证</li>
+									<li>相关许可证</li>
+									<li>相关证书</li>
+									<li>组织结构代码正本</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -119,12 +145,8 @@
 			$(function () {
 				Tab.enable();
 				jQuery(".zz__slider").slide({
-					titCell: ".hd ul",
-					mainCell: ".bd ul",					
 					effect:"left",
-					autoPage: true,
-					vis:1,
-					trigger:"click"
+					autoPlay:true
 				});
 			});
 		</script>
