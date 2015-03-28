@@ -165,7 +165,7 @@ module.exports = function (app) {
 	//人力资源1
 	app.get('/jobone', function (req, res) {
 		res.render('jobone', {
-			title: '秘书长',
+			title: '业务员-陕西帝奥电梯有限公司',
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -173,7 +173,7 @@ module.exports = function (app) {
 	//人力资源2
 	app.get('/jobtwo', function (req, res) {
 		res.render('jobtwo', {
-			title: '行政助理',
+			title: '行政文员-陕西帝奥电梯有限公司',
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
