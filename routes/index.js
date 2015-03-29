@@ -24,7 +24,7 @@ module.exports = function (app) {
 			
 		// });
 		res.render('index', {
-			title: '首页',
+			title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
