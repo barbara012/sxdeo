@@ -811,5 +811,5 @@ module.exports = function (app) {
 	// 		return;
 	// 	}
 	// 	next();
-	}
+	// }
 };
