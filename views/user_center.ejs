@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="user-center backend">
+			<div class="page-nav">
+				<div class="nav-content common-w clearfix">
+					<div class="logo-container float-l">
+						<a href="/"><img src="/img/logo.png" alt="迪奥电梯"></a>
+					</div>
+					<ul class="nav__menu float-r clearfix">
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">首页</a></li>
+						<li class="nav__menu_item float-l"><a href="about_us" class="menu__item_txt">关于我们</a></li>
+						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt active">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/product_show" class="menu__item_txt">产品展示</a></li>
+						<li class="nav__menu_item float-l"><a href="/custom_case" class="menu__item_txt">客户案例</a></li>
+						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/contact_us" class="menu__item_txt">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="viewport viewport_user-center">
+				<div class="viewport__content">
+					<h1 class="title">您已登录，可以进入以下操作</h1>
+					<div class="options clearfix">
+						<a class="option__item" href="/new_center" target="_blank">
+							<span class="icon icon-new"></span>
+							<h2>新闻管理</h2>
+						</a>
+						<a class="option__item" href="/recruit" target="_blank">
+							<span class="icon icon-job"></span>
+							<h2>招聘管理</h2>
+						</a>
+						<a class="option__item" href="/new_center" target="_blank">
+							<span class="icon icon-analysis"></span>
+							<h2>流量分析</h2>
+						</a>
+					</div>
+					<div class="logout-container">
+						<a href="/logout" class="logout">退出</a>
+					</div>					
+				</div>
+			</div>
+			<% include footer %>
+		</div>
+	</body>
+</html>

@@ -24,21 +24,35 @@
 			</div>
 			<div class="viewport viewport_new-list">
 				<div class="viewport__content">
-					<h1 class="viewport__title">新闻中心</h1>
+					<% if (user) {%>
+					<h1 class="viewport__title clearfix">新闻中心						
+						<a href="/post_new" class="btn-post-new float-r">发布新闻</a>
+					</h1>
 					<div class="news__list">
+					<% news.forEach(function (one, index) { %>
 						<div class="new__item clearfix">
-							<a href="/newthree" target="_blank" class="new__title float-l">陕西帝奥电梯——中国一线电梯品牌领跑者</a>
-							<span class="new__date float-r">2014/12/16</span>
+							<a href="/new/<%= one._id %>" target="_blank" class="new__title float-l"><%= one.title.replace('<span>','').replace('</span>', '') %></a>
+							<div class="operate float-r">
+								<a href="/editnew/<%= user.name  %>/<%= one._id %>">编辑</a>
+								<a href="/deletenew/<%= user.name  %>/<%= one._id %>">删除</a>
+							</div>
+							<span class="new__date float-r"><%= one.time.minute %></span>							
 						</div>
-						<div class="new__item clearfix">
-							<a href="/newone" target="_blank" class="new__title float-l">陕西帝奥电梯有限公司代理商来厂参观学习</a>
-							<span class="new__date float-r">2014/12/06</span>
-						</div>
-						<div class="new__item clearfix">
-							<a href="/newtwo" target="_blank" class="new__title float-l">省市领导对帝奥电梯项目的关心重视</a>
-							<span class="new__date float-r">2014/08/16</span>
-						</div>
+					<% }) %>
+						<% include paging %>
 					</div>
+					<% } else {%>
+					<h1 class="viewport__title clearfix">新闻中心	</h1>
+					<div class="news__list">
+					<% news.forEach(function (one, index) { %>
+						<div class="new__item clearfix">
+							<a href="/new/<%= one._id %>" target="_blank" class="new__title float-l"><%= one.title.replace('<span>','').replace('</span>', '') %></a>
+							<span class="new__date float-r"><%= one.time.minute %></span>
+						</div>
+					<% }) %>
+						<% include paging %>
+					</div>
+					<% } %>
 				</div>
 			</div>
 			<% include footer %>

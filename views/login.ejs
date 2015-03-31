@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="logon-page backend">
+			<div class="page-nav">
+				<div class="nav-content common-w clearfix">
+					<div class="logo-container float-l">
+						<a href="/"><img src="/img/logo.png" alt="迪奥电梯"></a>
+					</div>
+					<div class="login-form">
+						<div class="form__header">陕西帝奥电梯后台管理系统</div>
+						<div class="form__body">
+							<form action="/login" method="post">
+								<div class="form__item">
+									<span class="icon icon-user"></span>
+									<input class="txt" type="text" name="userName" placeholder="输入你的用户名">
+								</div>
+								<div class="form__item">
+									<span class="icon icon-password"></span>
+									<input class="txt" type="password" name="password" placeholder="输入你的账号密码">
+								</div>
+								<div class="form__item">
+									<button class="submit-btn" type="submit">登录</button>
+								</div>
+							</form>
+							<a href="javascript:;" id="reg-btn">注册</a>
+						</div>
+					</div>
+					<ul class="nav__menu float-r clearfix">
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt active">首页</a></li>
+						<li class="nav__menu_item float-l"><a href="about_us" class="menu__item_txt">关于我们</a></li>
+						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/product_show" class="menu__item_txt">产品展示</a></li>
+						<li class="nav__menu_item float-l"><a href="/custom_case" class="menu__item_txt">客户案例</a></li>
+						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/contact_us" class="menu__item_txt">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+			<% include footer %>
+		</div>
+	</body>
+</html>

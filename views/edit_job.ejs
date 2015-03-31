@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="post-new backend">
+			<div class="page-nav">
+				<div class="nav-content common-w clearfix">
+					<div class="logo-container float-l">
+						<a href="/"><img src="/img/logo.png" alt="迪奥电梯"></a>
+					</div>
+					<ul class="nav__menu float-r clearfix">
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">首页</a></li>
+						<li class="nav__menu_item float-l"><a href="about_us" class="menu__item_txt">关于我们</a></li>
+						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt active">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/product_show" class="menu__item_txt">产品展示</a></li>
+						<li class="nav__menu_item float-l"><a href="/custom_case" class="menu__item_txt">客户案例</a></li>
+						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/contact_us" class="menu__item_txt">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="viewport viewport_post-new">
+				<div class="viewport__content">
+					<form action="/edit_job/<%= job._id %>" method="post">
+						<div class="form__item clearfix">
+							<label for="post__title" class="float-l">招聘职位</label>
+							<input type="text" name="jobtitle" value="<%= job.title %>" id="post__title">
+						</div>
+						<div class="form__items clearfix">
+							<div class="form__item clearfix float-l">
+								<label for="job__number" class="float-l">招聘人数</label>
+								<input type="text" name="jobnumber" value="<%= job.number %>" id="job__number">
+							</div>
+							<div class="form__item clearfix float-l">
+								<label for="job__sex" class="float-l">性别要求</label>
+								<input type="text" name="jobsex" value="<%= job.sex  %>" id="job__sex">
+							</div>
+							<div class="form__item clearfix float-l">
+								<label for="job__age" class="float-l">年龄要求</label>
+								<input type="text" name="jobage" value="<%= job.age %>" id="job__age">
+							</div>
+							<div class="form__item clearfix float-l">
+								<label for="job__salary" class="float-l">薪资范围</label>
+								<input type="text" name="jobsalary" value="<%= job.salary %>" id="job__salary">
+							</div>
+						</div>
+						<div class="form__item clearfix">
+							<label for="post__content" class="float-l">招聘内容</label>
+							<textarea name="jobcontent" id="post__content"><%= job.job  %></textarea>
+						</div>
+						<div class="form__item txt-c">
+							<button type="submit" class="submit-btn">确定编辑</button>
+						</div>
+						<input type="hidden" id="hidden">
+					</form>
+				</div>
+			</div>
+			<% include footer %>
+		</div>
+	</body>
+</html>

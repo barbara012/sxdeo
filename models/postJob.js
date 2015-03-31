@@ -2,15 +2,19 @@ var ObjectID = require('mongodb').ObjectID,
 	mongodb = require('./db'),
 	markdown = require('markdown').markdown;
 
-function Post(title, post) {
+function PostJob(title,number, sex, age, salary,job) {
 	this.title = title;
-	this.post = post;
+	this.number = number;
+	this.sex = sex;
+	this.age = age;
+	this.salary = salary;
+	this.job = job;
 }
 
-module.exports = Post;
+module.exports = PostJob;
 
 //存储一篇文章及其相关信息
-Post.prototype.save = function(callback) {
+PostJob.prototype.save = function(callback) {
 	var date = new Date();
 	//存储各种时间格式，方便以后扩展
 	var time = {
@@ -22,10 +26,14 @@ Post.prototype.save = function(callback) {
 		date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
 	}
 	//要存入数据库的文档
-	var post = {
+	var PostJob = {
 		time: time,
 		title: this.title,
-		post: this.post,
+		number: this.number,
+		sex: this.sex,
+		age: this.age,
+		salary: this.salary,
+		job: this.job,
 		pv: 0
 	};
 	//打开数据库
@@ -33,14 +41,14 @@ Post.prototype.save = function(callback) {
 		if (err) {
 			return callback(err);
 		}
-		//读取 news 集合
-		db.collection('news', function (err, collection) {
+		//读取 jobs 集合
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
 			}
-			//将文档插入 news 集合
-			collection.insert(post, {
+			//将文档插入 jobs 集合
+			collection.insert(PostJob, {
 				safe: true
 			}, function (err) {
 				mongodb.close();
@@ -54,10 +62,10 @@ Post.prototype.save = function(callback) {
 				// 	}
 				// 	collect.update(
 				// 		{
-				// 			'name': post.name
+				// 			'name': PostJob.name
 				// 		},
 				// 		{
-				// 			$inc: {'news': 1}
+				// 			$inc: {'jobs': 1}
 				// 		},
 				// 		function (err) {
 				// 			mongodb.close();
@@ -74,14 +82,14 @@ Post.prototype.save = function(callback) {
 };
 
 //一次获取十篇文章
-Post.getTen = function(page, callback) {
+PostJob.getTen = function(page, callback) {
 	//打开数据库
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		//读取 news 集合
-		db.collection('news', function (err, collection) {
+		//读取 jobs 集合
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -101,9 +109,9 @@ Post.getTen = function(page, callback) {
 						return callback(err);
 					}
 					//解析 markdown 为 html
-					docs.forEach(function (doc) {
-						doc.post = markdown.toHTML(doc.post);
-					});
+					// docs.forEach(function (doc) {
+					// 	doc.PostJob = markdown.toHTML(doc.PostJob);
+					// });
 					callback(null, docs, total);
 				});
 			});
@@ -111,15 +119,15 @@ Post.getTen = function(page, callback) {
 	});
 };
 //获取一篇文章
-Post.getOne = function(id, callback) {
+PostJob.getOne = function(id, callback) {
 	//打开数据库
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		//读取 news 集合
+		//读取 jobs 集合
 
-		db.collection('news', function (err, collection) {
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -152,7 +160,7 @@ Post.getOne = function(id, callback) {
 					);
 						
 			//解析 markdown 为 html
-						doc.post = markdown.toHTML(doc.post);
+						//doc.PostJob = markdown.toHTML(doc.PostJob);
 						callback(null, doc);//返回查询的一篇文章						
 					}
 				}
@@ -161,14 +169,14 @@ Post.getOne = function(id, callback) {
 	});
 };
 //返回原始发表的内容（markdown 格式）
-Post.edit = function(id, callback) {  	
+PostJob.edit = function(id, callback) {  	
 	//打开数据库
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		//读取 news 集合
-		db.collection('news', function (err, collection) {
+		//读取 jobs 集合
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -187,23 +195,23 @@ Post.edit = function(id, callback) {
 	});
 };
 //更新一篇文章及其相关信息
-Post.update = function(id, title, post, callback) {
-	var date = new Date(),
-		time = {
-			date: date,
-			year : date.getFullYear(),
-			month : date.getFullYear() + "-" + (date.getMonth() + 1),
-			day : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-			minute : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
-			date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
-		};
+PostJob.update = function(id, title, number, sex, age, salary, job, callback) {
+	// var date = new Date(),
+		// time = {
+		// 	date: date,
+		// 	year : date.getFullYear(),
+		// 	month : date.getFullYear() + "-" + (date.getMonth() + 1),
+		// 	day : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+		// 	minute : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
+		// 	date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
+		// };
 	//打开数据库
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		//读取 news 集合
-		db.collection('news', function (err, collection) {
+		//读取 jobs 集合
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -214,8 +222,11 @@ Post.update = function(id, title, post, callback) {
 			}, {
 				$set: {
 					title: title,
-					time: time,
-					post: post
+					number: number,
+					sex: sex,
+					age: age,
+					salary: salary,
+					job: job
 				}
 			}, function (err) {
 				mongodb.close();
@@ -228,14 +239,14 @@ Post.update = function(id, title, post, callback) {
 	});
 };
 //删除一篇文章
-Post.remove = function(id, callback) {
+PostJob.remove = function(id, callback) {
 	//打开数据库
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-	//读取 news 集合
-		db.collection('news', function (err, collection) {
+	//读取 jobs 集合
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -256,10 +267,9 @@ Post.remove = function(id, callback) {
 					{
 						w: 1
 					},
-					function (err) {
-						mongodb.close();						
+					function (err) {	
+						mongodb.close();
 						if (err) {
-							
 							return callback(err);
 						}
 						callback(null);
@@ -270,14 +280,14 @@ Post.remove = function(id, callback) {
 	});
 };
 //返回所有文章存档信息
-Post.getArchive = function(callback) {
+PostJob.getArchive = function(callback) {
   //打开数据库
   mongodb.open(function (err, db) {
 	if (err) {
 	  return callback(err);
 	}
-	//读取 news 集合
-	db.collection('news', function (err, collection) {
+	//读取 jobs 集合
+	db.collection('jobs', function (err, collection) {
 	  if (err) {
 		mongodb.close();
 		return callback(err);
@@ -300,12 +310,12 @@ Post.getArchive = function(callback) {
   });
 };
 //返回所有标签
-Post.getTags = function(callback) {
+PostJob.getTags = function(callback) {
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		db.collection('news', function (err, collection) {
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -322,12 +332,12 @@ Post.getTags = function(callback) {
 	});
 };
 //返回含有特定标签的所有文章
-Post.getTag = function(tag, callback) {
+PostJob.getTag = function(tag, callback) {
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		db.collection('news', function (err, collection) {
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -353,12 +363,12 @@ Post.getTag = function(tag, callback) {
 	});
 };
 //返回通过标题关键字查询的所有文章信息
-Post.search = function(keyword, callback) {
+PostJob.search = function(keyword, callback) {
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		db.collection('news', function (err, collection) {
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -383,12 +393,12 @@ Post.search = function(keyword, callback) {
 	});
 };
 //转载一篇文章
-Post.reprint = function(reprint_from, reprint_to, callback) {
+PostJob.reprint = function(reprint_from, reprint_to, callback) {
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		db.collection('news', function (err, collection) {
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);
@@ -424,7 +434,7 @@ Post.reprint = function(reprint_from, reprint_to, callback) {
 				//将转载生成的副本修改后存入数据库，并返回存储后的文档
 					collection.insert(doc, {
 						safe: true
-					}, function (err, post) {						
+					}, function (err, PostJob) {						
 						if (err) {
 							mongodb.close();
 							return callback(err);
@@ -440,7 +450,7 @@ Post.reprint = function(reprint_from, reprint_to, callback) {
 										"name": doc.name,
 										"minute": time.minute,
 										"title": doc.title,
-										"id": post[0]._id
+										"id": PostJob[0]._id
 									}
 								}
 							}, function (err) {
@@ -450,18 +460,18 @@ Post.reprint = function(reprint_from, reprint_to, callback) {
 								}
 							}
 						);						
-						callback(err, post[0]);
+						callback(err, PostJob[0]);
 					});
 			});
 		});
 	});
 };
-Post.getAll = function (name, callback) {
+PostJob.getAll = function (name, callback) {
 	mongodb.open(function (err, db) {
 		if (err) {
 			return callback(err);
 		}
-		db.collection('news', function (err, collection) {
+		db.collection('jobs', function (err, collection) {
 			if (err) {
 				mongodb.close();
 				return callback(err);

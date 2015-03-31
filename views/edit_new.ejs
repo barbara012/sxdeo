@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="post-new backend">
+			<div class="page-nav">
+				<div class="nav-content common-w clearfix">
+					<div class="logo-container float-l">
+						<a href="/"><img src="/img/logo.png" alt="迪奥电梯"></a>
+					</div>
+					<ul class="nav__menu float-r clearfix">
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">首页</a></li>
+						<li class="nav__menu_item float-l"><a href="about_us" class="menu__item_txt">关于我们</a></li>
+						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt active">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/product_show" class="menu__item_txt">产品展示</a></li>
+						<li class="nav__menu_item float-l"><a href="/custom_case" class="menu__item_txt">客户案例</a></li>
+						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/contact_us" class="menu__item_txt">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="viewport viewport_post-new">
+				<div class="viewport__content">
+					<form action="/editnew/<%= onenew._id %>" method="post">
+						<div class="form__item clearfix">
+							<label for="post__title" class="float-l">新闻标题</label>
+							<input type="text" name="newtitle" value="<%= onenew.title %>"  id="post__title">
+						</div>
+						<div class="form__item clearfix">
+							<label for="post_content" class="float-l">新闻内容</label>
+							<textarea name="newcontent" id="post__content"><%= onenew.post %></textarea>
+						</div>
+						<div class="form__item txt-c">
+							<button type="submit" class="submit-btn">确认发布</button>
+						</div>
+						<input type="hidden" id="hidden">
+					</form>
+				</div>
+			</div>
+			<% include footer %>
+			<script src="/js/postImg.js"></script>
+		</div>
+	</body>
+</html>

@@ -22,20 +22,26 @@
 				</div>
 			</div>
 			<div class="new-sp__content common-w">
-				<h1 class="title">陕西帝奥电梯有限公司代理商来厂参观学习</h1>
-				<div class="new__date txt-c">2014-08-16</div>
+				<h1 class="title"><%= onenew.title.replace('<span>','').replace('</span>', '') %></h1>
+				<div class="new__date txt-c"><%- onenew.time.day %></div>
 				<div class="new__detail">
-					<p>为拓展陕西帝奥电梯产品销售渠道，让更多销售代理商了解公司产品和企业发展，2014年12月6日，陕西帝奥电梯有限公司组织其下属全资子公司陕西普瑞达电梯有限公司及全国各地销售代理商来厂参观考察，了解目前公司的厂区规划建设及电梯生产销售情况。</p>
+					<%- onenew.post %>
+					<!-- <p>为拓展陕西帝奥电梯产品销售渠道，让更多销售代理商了解公司产品和企业发展，2014年12月6日，陕西帝奥电梯有限公司组织其下属全资子公司陕西普瑞达电梯有限公司及全国各地销售代理商来厂参观考察，了解目前公司的厂区规划建设及电梯生产销售情况。</p>
 					<div class="new__pic txt-c">
 						<img src="/img/new_center/3.jpg" alt="省市领导对帝奥电梯项目的关心重视">
 					</div>
 					<p>参观结束后，召开了公司发展动员大会，会上公司总经理张元卿提出公司发展管理“三同步，三统一”原则，要求每一位员工都积极参与到企业发展当中，为企业的成长壮大尽职尽责。</p>
 					<div class="new__pic txt-c">
 						<img src="/img/new_center/4.jpg" alt="省市领导对帝奥电梯项目的关心重视">
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<% include footer %>
 		</div>
+		<script type="text/javascript">
+			$(function () {
+				$('p').has('img').addClass('p-img');
+			});
+		</script>
 	</body>
 </html>

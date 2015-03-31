@@ -36,7 +36,11 @@ ul {
 }
 pre,
 code {
-	white-space: normal;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
 }
 .opacity(@opacity:1) {
 	opacity: @opacity;
@@ -159,7 +163,9 @@ code {
 .product-show,
 .custom-case,
 .recruit,
-.contact-us {
+.contact-us,
+.backend,
+.post-new {
 	min-height: 780px;
 	height: 100%;
 	width: 100%;
@@ -534,6 +540,23 @@ code {
 			padding: 30px 0;
 		}		
 	}
+	.btn-post-new {
+		width: 140px;
+		height: 40px;
+		font-size: 20px;
+		line-height: 40px;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 2px;
+		background-color: #015198;
+		color: #fff;
+	}
+	.operate {
+		margin-left: 100px;
+		a:first-child {
+			margin-right: 20px;
+		}
+	}
 	.tab__content__cnt {
 		overflow: auto;
 		padding: 0 30px;
@@ -707,6 +730,74 @@ code {
 		color: #a0a0a0;
 	}
 }
+.post-new {
+	.viewport__content {
+		padding: 50px;
+	}
+	.form__item {
+		margin-top: 20px;
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+	label {
+		width: 10%;
+		font-size: 20px;
+		line-height: 50px;
+	}
+	input[type="text"] {
+		height: 50px;
+		padding: 10px;
+		font-size: 18px;
+		outline: none;
+		float: left;
+		border: 1px solid #cdcdcd;
+		&:focus {
+			border-color: #015198;
+		}
+	}
+	#post__content {
+		height: 240px;
+	}
+	#post__title,
+	#post__content {
+		width: 90%;			
+	}
+	#post__content {
+		padding: 10px;
+		font-size: 18px;
+		outline: none;
+		&:focus {
+			border-color: #015198;
+		}
+	}
+	.form__items {
+		margin-top: 20px;
+		.form__item {
+			width: 25%;
+			margin-top: 0;
+		}
+		label {
+			width: 90px;
+		}
+		input {
+			width: 100px;
+		}
+	}
+	.submit-btn {
+		width: 450px;
+		height: 60px;
+		font-size: 24px;
+		color: #fff;
+		outline: none;
+		border: none;
+		border-radius: 3px;
+		background-color: #015198;
+		&:hover {
+			background-color: darken(#015198, 10%);
+		}
+	}
+}
 .new-single-page,
 .job-info {
 	background-color: #e5e5e5;
@@ -730,8 +821,10 @@ code {
 	.new__detail {
 		padding: 10px 0;
 	}
-	.new__pic {
+	.p-img {
 		margin-bottom: 20px;
+		text-align: center;
+		text-indent: 0;
 		img {
 			max-width: 100%;
 			border: 2px solid #ffffff;
@@ -741,7 +834,6 @@ code {
 	p {
 		line-height: 2;
 		text-indent: 30px;
-		margin-bottom: 20px;
 	}
 }
 .contact-us {
@@ -897,6 +989,120 @@ code {
 	bottom: 0;
 	margin: auto;
 	z-index: 1001;
+}
+//后台
+.backend {
+	background-color: #1372c6;
+}
+.logon-page {
+	.login-form {
+		width: 540px;
+		height: 380px;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		overflow: hidden;
+	}
+	.form__header {
+		height: 77px;
+		line-height: 77px;
+		padding-left: 130px;
+		background-color: #085ca5;
+		background-image: url(../img/logo.png);
+		background-repeat: no-repeat;
+		color: #fff;
+		font-size: 20px;
+	}
+	.form__body {
+		background-color: #fff;
+		padding: 40px;
+	}
+	.form__item {
+		margin-top: 20px;
+		height: 50px;
+		position: relative;
+		&:first-child {
+			margin-top: 0;
+		}
+		.txt {
+			height: 50px;
+			width: 100%;
+			padding: 10px 10px 10px 80px;
+			border: 1px solid #cdcdcd;
+			border-radius: 2px;
+			font-size: 18px;
+			outline: none;
+			&:focus {
+				border-color: #015198;
+			}
+		}
+		.submit-btn {
+			height: 50px;
+			width: 100%;
+			background-color: #015198;
+			color: #fff;
+			border: none;
+			outline: none;
+			font-size: 18px;
+		}
+	}
+}
+.user-center {
+	.viewport__content {
+		background-color: transparent;
+	}
+	.title {
+		color: #fff;
+		margin-bottom: 30px;
+	}
+	.options {
+		margin-bottom: 30px;
+	}
+	.option__item {
+		font-size: 16px;
+		width: 280px;
+		height: 300px;
+		float: left;
+		margin-left: 62px;
+		background-color: #fff;
+		border-radius: 2px;
+		text-align: center;
+		padding-top: 30px;
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+	.icon {
+		width: 140px;
+		height: 140px;
+		display: inline-block;
+	}
+	.icon-new {
+		background-image: url(../img/backend/new.jpg);
+	}
+	.icon-job {
+		background-image: url(../img/backend/job.jpg);
+	}
+	.icon-analysis {
+		background-image: url(../img/backend/analysis.jpg);
+	}
+	.logout-container {
+		text-align: right;
+	}
+	.logout {
+		width: 200px;
+		height: 60px;
+		line-height: 60px;
+		color: #fff;
+		background-color: #ff0000;
+		text-decoration: none;
+		display: inline-block;
+		text-align: center;
+		font-size: 18px;
+	}
 }
 
 
