@@ -184,19 +184,22 @@
 					<img src="/img/index/6.png" alt="联系我们">
 				</div>
 				<div class="cnt-cs_content">
-					<div class="form__item clearfix">
-						<div class="field-container field-container_name float-l">
-							<input type="text" class="text" placeholder="请输入您的姓名">
+					<form action="/leave_message" method="post">
+						<div class="form__item clearfix">
+							<div class="field-container field-container_name float-l">
+								<input type="text" name="username" required="required" class="text" placeholder="请输入您的姓名">
+							</div>
+							<div class="field-container field-container_mail float-r">
+								<input type="email" required="required" name="useremail" class="text" placeholder="请输入您的邮箱">
+							</div>
 						</div>
-						<div class="field-container field-container_mail float-r">
-							<input type="text" class="text" placeholder="请输入您的邮箱">
+						<div class="form__item clearfix">
+							<div class="field-container">
+								<textarea required="required" placeholder="请输入您的留言内容" class="text-area" name="message" id="" cols="30" rows="10"></textarea>
+								<button type="submit">确认</button>
+							</div>
 						</div>
-					</div>
-					<div class="form__item clearfix">
-						<div class="field-container">
-							<textarea placeholder="请输入您的留言内容" class="text-area" name="" id="" cols="30" rows="10"></textarea>
-						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 			<% include footer %>

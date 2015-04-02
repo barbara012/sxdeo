@@ -47,26 +47,6 @@ Post.prototype.save = function(callback) {
 				if (err) {
 				 	return callback(err);//失败！返回 err
 				}
-				// db.collection('users', function(err, collect) {
-				// 	if (err) {
-				// 		mongodb.close();
-				// 		return callback(err);
-				// 	}
-				// 	collect.update(
-				// 		{
-				// 			'name': post.name
-				// 		},
-				// 		{
-				// 			$inc: {'news': 1}
-				// 		},
-				// 		function (err) {
-				// 			mongodb.close();
-				// 			if (err) {
-				// 				return callback(err);
-				// 			}
-				// 		}
-				// 	);
-				// })
 				callback(null);//返回 err 为 null
 			});
 		});

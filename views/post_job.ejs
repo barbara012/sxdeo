@@ -26,29 +26,29 @@
 					<form action="/post_job" method="post">
 						<div class="form__item clearfix">
 							<label for="post__title" class="float-l">招聘职位</label>
-							<input type="text" name="jobtitle" id="post__title">
+							<input type="text" required="required" name="jobtitle" id="post__title">
 						</div>
 						<div class="form__items clearfix">
 							<div class="form__item clearfix float-l">
 								<label for="job__number" class="float-l">招聘人数</label>
-								<input type="text" name="jobnumber" id="job__number">
+								<input type="text" required="required" name="jobnumber" id="job__number">
 							</div>
 							<div class="form__item clearfix float-l">
 								<label for="job__sex" class="float-l">性别要求</label>
-								<input type="text" name="jobsex" id="job__sex">
+								<input type="text" required="required" name="jobsex" id="job__sex">
 							</div>
 							<div class="form__item clearfix float-l">
 								<label for="job__age" class="float-l">年龄要求</label>
-								<input type="text" name="jobage" id="job__age">
+								<input type="text" required="required" name="jobage" id="job__age">
 							</div>
 							<div class="form__item clearfix float-l">
 								<label for="job__salary" class="float-l">薪资范围</label>
-								<input type="text" name="jobsalary" id="job__salary">
+								<input type="text" required="required" name="jobsalary" id="job__salary">
 							</div>
 						</div>
 						<div class="form__item clearfix">
 							<label for="post__content" class="float-l">招聘内容</label>
-							<textarea name="jobcontent" id="post__content"></textarea>
+							<textarea name="jobcontent" required="required" id="post__content"></textarea>
 						</div>
 						<div class="form__item txt-c">
 							<button type="submit" class="submit-btn">确认发布</button>

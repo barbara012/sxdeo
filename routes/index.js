@@ -8,23 +8,15 @@ var crypto = require('crypto'),
 	PostNew = require('../models/post.js'),
 	PostJob = require('../models/postJob.js'),
 	Pic = require('../models/pic.js'),
-	Comment = require('../models/comment.js'),
+	Message = require('../models/message.js'),
 	Email = require('../models/email.js'),
 	markdown = require('markdown').markdown,
 	passport = require('passport');
 module.exports = function (app) {
 
 	app.get('/', function (req, res) {
-		//判断是否是第一页，并把请求的页数转换成 number 类型
-		// var page = req.query.p ? parseInt(req.query.p) : 1;
-		//查询并返回第 page 页的 10 篇文章
-		// Post.getTen(null, page, function (err, posts, total) {
-		// 	if (err) {
-		// 		posts = [];
-		// 	}
-			
-		// });
 		res.render('index', {
+			user: req.session.user,
 			title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -80,11 +72,12 @@ module.exports = function (app) {
 	app.get('/about_us', function (req, res) {
 		res.render('about_us', {
 			title: '关于我们--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
 	});
-	//新闻中心
+	//发布新闻
 	app.get('/post_new', checkLogin);
 	app.get('/post_new', function (req, res) {
 		res.render('post_new', {
@@ -94,7 +87,7 @@ module.exports = function (app) {
 			error: req.flash('error').toString()
 		});
 	});
-	// app.post('/post', checkLogin);
+	app.post('/post_new', checkLogin);
 	app.post('/post_new', function (req, res) {
 		var post = new PostNew(req.body.newtitle, req.body.newcontent);
 		post.save(function (err) {
@@ -103,9 +96,10 @@ module.exports = function (app) {
 				return res.redirect('/post_new');
 			}
 			req.flash('success', '发布成功!');
-			res.redirect('/new_center');
+			res.redirect('/manager_new');
 		});
 	});
+	//普通用户新闻中心
 	app.get('/new_center', function (req, res) {
 		//判断是否是第一页，并把请求的页数转换成 number 类型
 		var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -115,6 +109,28 @@ module.exports = function (app) {
 				news = [];
 			}
 			res.render('new_center', {
+				title: '新闻中心--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				news: news,
+				page: page,
+				isFirstPage: (page - 1) == 0,
+				isLastPage: ((page - 1) * 10 + news.length) == total,
+				user: req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+	});
+	//管理员后台新闻中心
+	app.get('/manager_new', checkLogin);
+	app.get('/manager_new', function (req, res) {
+		//判断是否是第一页，并把请求的页数转换成 number 类型
+		var page = req.query.p ? parseInt(req.query.p) : 1;
+		//查询并返回第 page 页的 10 篇文章
+		PostNew.getTen(page, function (err, news, total) {
+			if (err) {
+				news = [];
+			}
+			res.render('manager_new', {
 				title: '新闻中心--陕西帝奥电梯——中国一线电梯品牌领跑者',
 				news: news,
 				page: page,
@@ -206,6 +222,7 @@ module.exports = function (app) {
 	app.get('/newtwo', function (req, res) {
 		res.render('newtwo', {
 			title: '省市领导对帝奥电梯项目的关心重视',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -214,6 +231,7 @@ module.exports = function (app) {
 	app.get('/newthree', function (req, res) {
 		res.render('newthree', {
 			title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -222,6 +240,7 @@ module.exports = function (app) {
 	app.get('/product_show', function (req, res) {
 		res.render('product_show', {
 			title: '产品展示--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -230,11 +249,12 @@ module.exports = function (app) {
 	app.get('/custom_case', function (req, res) {
 		res.render('custom_case', {
 			title: '客户案例展示--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
 	});
-	//人力资源
+	//人力资源中心，普通用户
 	app.get('/recruit', function (req, res) {
 		//判断是否是第一页，并把请求的页数转换成 number 类型
 		var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -255,8 +275,29 @@ module.exports = function (app) {
 			});
 		});
 	});
-	//新闻中心
-	app.post('/post_job', checkLogin);
+	//人力资源中心，管理员
+	app.get('/manager_job', checkLogin);
+	app.get('/manager_job', function (req, res) {
+		//判断是否是第一页，并把请求的页数转换成 number 类型
+		var page = req.query.p ? parseInt(req.query.p) : 1;
+		// 查询并返回第 page 页的 10 篇文章
+		PostJob.getTen(page, function (err, jobs, total) {
+			if (err) {
+				jobs = [];
+			}
+			res.render('manager_job', {
+				title: '人力资源--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				jobs: jobs,
+				page: page,
+				isFirstPage: (page - 1) == 0,
+				isLastPage: ((page - 1) * 10 + jobs.length) == total,
+				user: req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+	});
+	//发布职位
 	app.get('/post_job', checkLogin);
 	app.get('/post_job', function (req, res) {
 		res.render('post_job', {
@@ -282,7 +323,7 @@ module.exports = function (app) {
 				return res.redirect('/post_job');
 			}
 			req.flash('success', '发布成功!');
-			res.redirect('/recruit');
+			res.redirect('/manager_job');
 		});
 	});
 	app.get('/job/:id', function (req, res) {
@@ -368,6 +409,7 @@ module.exports = function (app) {
 	app.get('/jobone', function (req, res) {
 		res.render('jobone', {
 			title: '业务员-陕西帝奥电梯有限公司',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -376,6 +418,7 @@ module.exports = function (app) {
 	app.get('/jobtwo', function (req, res) {
 		res.render('jobtwo', {
 			title: '行政文员-陕西帝奥电梯有限公司',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -384,6 +427,7 @@ module.exports = function (app) {
 	app.get('/contact_us', function (req, res) {
 		res.render('contact_us', {
 			title: '联系我们--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -449,6 +493,56 @@ module.exports = function (app) {
 			});
 		});
 	});
+	//消息中心
+	app.get('/leave_message', checkLogin);
+	app.get('/leave_message', function (req, res) {
+		//判断是否是第一页，并把请求的页数转换成 number 类型
+		var page = req.query.p ? parseInt(req.query.p) : 1;
+		// 查询并返回第 page 页的 10 篇文章
+		Message.getTen(page, function (err, messs, total) {
+			if (err) {
+				messs = [];
+			}
+			res.render('leave_message', {
+				title: '人力资源--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				messs: messs,
+				page: page,
+				isFirstPage: (page - 1) == 0,
+				isLastPage: ((page - 1) * 10 + messs.length) == total,
+				user: req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString()
+			});
+		});
+	});
+	//上传一则消息
+	app.post('/leave_message', function (req, res) {
+		if (req.body.email == '' || req.body.message == '') {
+			req.flash('error', '请填写完事留言信息');
+			return res.redirect('/');
+		}
+		var mes = new Message(req.body.username, req.body.useremail, req.body.message);
+		mes.save(function (err) {
+			if (err) {
+				req.flash('error', '留言失败，可能是系统忙=。=');
+				return res.redirect('/');
+			}
+			res.redirect('/');
+		});
+	});
+	//查看消息详情
+	app.get('/mess/:id', function (req, res) {
+		Message.getOne(req.params.id, function (err, message) {
+			if (err) {
+				return res.redirect('/leave_message');
+			}
+			return res.send({
+				name: message.name,
+				email: message.email,
+				message: message.message
+			});
+		});
+	});
 	//上传图片
 	app.post('/uploadimg', function (req, res) {
 		var dbpic = [],
@@ -487,11 +581,11 @@ module.exports = function (app) {
 		});
 	});
 	//用户中心
-	//app.get('/user_center', checkLogin);
-	//人力资源
+	app.get('/user_center', checkLogin);
 	app.get('/user_center', function (req, res) {
 		res.render('user_center', {
 			title: '后台中心',
+			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -503,60 +597,6 @@ module.exports = function (app) {
 		req.flash('success', '登出成功!');
 		res.redirect('/');//登出成功后跳转到主页
 	});
-	//发送邮箱
-	app.post('/reset', function (req, res) {
-		User.getByEmail(req.body.resetEmail, function (err, user) {
-			if (err || !user) {
-				return res.redirect('/login');
-			}
-			var content = req.body.emailcontent;
-			Email.send(req.body.resetEmail, content, function (err) {
-				if (err) {
-					req.flash('error', err);					
-				}
-				return res.redirect('/');
-			});
-		})
-	});
-	//重置页
-	// app.get('/reset/:id/:email/:time/:flag', function (req, res) {
-	// 	var time = new Date().getTime();
-
-	// 	if ((time - req.params.time)/(1000 * 60 * 60) > 1) {
-	// 		return res.render('reset', {
-	// 					title: '首页',
-	// 					past: true,
-	// 					success: req.flash('success').toString(),
-	// 					error: req.flash('error').toString()
-	// 				});
-	// 	}
-	// 	User.getByEmail(req.params.email, function (err, user) {
-	// 		if (err) {
-	// 			req.flash('error', err);
-	// 			return res.redirect('/');
-	// 		}
-	// 		res.render('reset', {
-	// 			title: '首页',
-	// 			past: false,
-	// 			user: user,
-	// 			success: req.flash('success').toString(),
-	// 			error: req.flash('error').toString()
-	// 		})
-	// 	})
-	// });
-	//重置
-	// app.post('/reset/password/:name', checkLogin);
-	// app.post('/reset/password/:name', function (req, res) {
-	// 	var password = req.body.password,
-	// 		md5 = crypto.createHash('md5');
-	// 	password = md5.update(password).digest('hex');
-	// 	User.resetPassword(req.params.name, password, function (err) {
-	// 		if (err) {
-	// 			req.flash('error', err);
-	// 		}
-	// 		res.redirect('/login');
-	// 	})
-	// });
 	//	404
 	app.use(function (req, res) {
 		res.render("404");

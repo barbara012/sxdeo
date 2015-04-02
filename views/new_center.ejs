@@ -24,24 +24,6 @@
 			</div>
 			<div class="viewport viewport_new-list">
 				<div class="viewport__content">
-					<% if (user) {%>
-					<h1 class="viewport__title clearfix">新闻中心						
-						<a href="/post_new" class="btn-post-new float-r">发布新闻</a>
-					</h1>
-					<div class="news__list">
-					<% news.forEach(function (one, index) { %>
-						<div class="new__item clearfix">
-							<a href="/new/<%= one._id %>" target="_blank" class="new__title float-l"><%= one.title.replace('<span>','').replace('</span>', '') %></a>
-							<div class="operate float-r">
-								<a href="/editnew/<%= user.name  %>/<%= one._id %>">编辑</a>
-								<a href="/deletenew/<%= user.name  %>/<%= one._id %>">删除</a>
-							</div>
-							<span class="new__date float-r"><%= one.time.minute %></span>							
-						</div>
-					<% }) %>
-						<% include paging %>
-					</div>
-					<% } else {%>
 					<h1 class="viewport__title clearfix">新闻中心	</h1>
 					<div class="news__list">
 					<% news.forEach(function (one, index) { %>
@@ -52,7 +34,6 @@
 					<% }) %>
 						<% include paging %>
 					</div>
-					<% } %>
 				</div>
 			</div>
 			<% include footer %>

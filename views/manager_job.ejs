@@ -4,8 +4,7 @@
 		<% include head %>
 	</head>
 	<body>
-		<div class="recruit">
-			<img src="/img/recruit/bg.jpg" alt="陕西帝奥电梯" class="page__bg">
+		<div class="recruit manager">
 			<div class="page-nav">
 				<div class="nav-content common-w clearfix">
 					<div class="logo-container float-l">
@@ -24,8 +23,10 @@
 			</div>
 			<div class="viewport viewport_recruit">
 				<div class="viewport__content">
+					<% if (user) {%>
 					<h1 class="viewport__title clearfix">
 						人力资源
+						<a href="/post_job" class="btn-post-new float-r">发布招聘</a>
 					</h1>
 					<div class="job_list">
 						<table>
@@ -33,17 +34,23 @@
 								<th>招聘职位</th>
 								<th>招聘人数</th>
 								<th>发布日期</th>
+								<th>操作</th>
 							</tr>
 							<% jobs.forEach(function (job, index) {%>
 							<tr>
-								<td><a target="_blank" href="/job/<%= job._id %>"><%= job.title%></td>
+								<td><a target="_blank" href="/job/<%= job._id %>"><%= job.title %></td>
 								<td><%= job.number %></td>
-								<td><%= job.time.day %></td>
+								<td><%= job.time.minute %></td>
+								<td class="operate">
+									<a href="/editjob/<%= user.name %>/<%= job._id %>">编辑</a>
+									<a href="/deletejob/<%= user.name %>/<%= job._id %>">删除</a>
+								</td>
 							</tr>
 							<% }) %>
 						</table>
 						<% include paging %>
 					</div>
+					<% } %>
 				</div>	
 			</div>
 			<% include footer %>

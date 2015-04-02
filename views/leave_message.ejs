@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<% include head %>
+	</head>
+	<body>
+		<div class="message-center">
+			<div class="page-nav">
+				<div class="nav-content common-w clearfix">
+					<div class="logo-container float-l">
+						<a href="/"><img src="/img/logo.png" alt="迪奥电梯"></a>
+					</div>
+					<ul class="nav__menu float-r clearfix">
+						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">首页</a></li>
+						<li class="nav__menu_item float-l"><a href="about_us" class="menu__item_txt">关于我们</a></li>
+						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt active">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/product_show" class="menu__item_txt">产品展示</a></li>
+						<li class="nav__menu_item float-l"><a href="/custom_case" class="menu__item_txt">客户案例</a></li>
+						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/contact_us" class="menu__item_txt">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="viewport viewport_message">
+				<div class="viewport__content">
+					<h1 class="viewport__title clearfix">留言中心	</h1>
+					<div class="mess__list">
+					<% messs.forEach(function (mess, index) { %>
+						<div class="mess__item clearfix">
+							<a data-url="/mess/<%= mess._id %>" href="javascript:;" class="mess__title float-l"><%= mess.name %></a>
+							<span class="mess__email float-l"><%= mess.email %></span>
+							<span class="mess__date float-r"><%= mess.time.minute %></span>
+						</div>
+					<% }) %>
+						<% include paging %>
+					</div>
+				</div>
+			</div>
+			<% include footer %>
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				$(document).on('click', '.mess__title', function () {
+					$.ajax(
+						{
+							type: 'get',
+							url: $(this).data('url'),
+							success: function (mes) {
+								showMess(mes);
+							}
+						}
+					)
+				});
+				function showMess(mess) {
+					var $mate = $('<div class="popup-mate"></div>');
+					var $messContainer = $('<div class="mess-popup"></div>');
+					var $title = $('<div class="mess__title">留言信息</div>');
+					var $name = $('<div class="mess__name float-l"></div>').text('姓名：' + mess.name);
+					var $email = $('<div class="mess__email float-l"></div>').text('邮箱：' + mess.email);
+					var $messContent = $('<pre class="mess__content"></pre>').text(mess.message);
+					var $close = $('<div class="close">ｘ</div>').click(function () {
+						$messContainer.remove();
+						$mate.remove();
+					});
+					$('body').append($mate).append($messContainer
+							.append($title).append($('<div class="clearfix mess1"></div>').append($name).append($email))
+							.append($messContent).append($close));
+				}
+
+			});
+		</script>
+	</body>
+</html>

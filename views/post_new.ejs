@@ -26,14 +26,14 @@
 					<form action="/post_new" method="post">
 						<div class="form__item clearfix">
 							<label for="post__title" class="float-l">新闻标题</label>
-							<input type="text" name="newtitle" id="post__title">
+							<input type="text" required="required" name="newtitle" id="post__title">
 						</div>
 						<div class="form__item clearfix">
 							<label for="post_content" class="float-l">新闻内容</label>
-							<textarea name="newcontent" id="post__content"></textarea>
+							<textarea name="newcontent" required="required" id="post__content"></textarea>
 						</div>
 						<div class="form__item txt-c">
-							<button type="submit" class="submit-btn">确认发布</button>
+							<button type="submit" required="required" class="submit-btn">确认发布</button>
 						</div>
 						<input type="hidden" id="hidden">
 					</form>

@@ -4,8 +4,7 @@
 		<% include head %>
 	</head>
 	<body>
-		<div class="recruit">
-			<img src="/img/recruit/bg.jpg" alt="陕西帝奥电梯" class="page__bg">
+		<div class="new-center manager">
 			<div class="page-nav">
 				<div class="nav-content common-w clearfix">
 					<div class="logo-container float-l">
@@ -14,37 +13,35 @@
 					<ul class="nav__menu float-r clearfix">
 						<li class="nav__menu_item float-l"><a href="/" class="menu__item_txt">首页</a></li>
 						<li class="nav__menu_item float-l"><a href="about_us" class="menu__item_txt">关于我们</a></li>
-						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt">新闻中心</a></li>
+						<li class="nav__menu_item float-l"><a href="/new_center" class="menu__item_txt active">新闻中心</a></li>
 						<li class="nav__menu_item float-l"><a href="/product_show" class="menu__item_txt">产品展示</a></li>
 						<li class="nav__menu_item float-l"><a href="/custom_case" class="menu__item_txt">客户案例</a></li>
-						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt active">人力资源</a></li>
+						<li class="nav__menu_item float-l"><a href="/recruit" class="menu__item_txt">人力资源</a></li>
 						<li class="nav__menu_item float-l"><a href="/contact_us" class="menu__item_txt">联系我们</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="viewport viewport_recruit">
+			<div class="viewport viewport_new-list">
 				<div class="viewport__content">
-					<h1 class="viewport__title clearfix">
-						人力资源
+					<% if (user) {%>
+					<h1 class="viewport__title clearfix">新闻中心						
+						<a href="/post_new" class="btn-post-new float-r">发布新闻</a>
 					</h1>
-					<div class="job_list">
-						<table>
-							<tr>
-								<th>招聘职位</th>
-								<th>招聘人数</th>
-								<th>发布日期</th>
-							</tr>
-							<% jobs.forEach(function (job, index) {%>
-							<tr>
-								<td><a target="_blank" href="/job/<%= job._id %>"><%= job.title%></td>
-								<td><%= job.number %></td>
-								<td><%= job.time.day %></td>
-							</tr>
-							<% }) %>
-						</table>
+					<div class="news__list">
+					<% news.forEach(function (one, index) { %>
+						<div class="new__item clearfix">
+							<a href="/new/<%= one._id %>" target="_blank" class="new__title float-l"><%= one.title %></a>
+							<div class="operate float-r">
+								<a href="/editnew/<%= user.name  %>/<%= one._id %>">编辑</a>
+								<a href="/deletenew/<%= user.name  %>/<%= one._id %>">删除</a>
+							</div>
+							<span class="new__date float-r"><%= one.time.minute %></span>							
+						</div>
+					<% }) %>
 						<% include paging %>
 					</div>
-				</div>	
+					<% } %>
+				</div>
 			</div>
 			<% include footer %>
 		</div>
