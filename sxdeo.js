@@ -5,7 +5,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-// var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var settings = require('./settings');
@@ -33,7 +32,7 @@ app.set('port', process.env.PORT || 1314);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
-app.use(favicon(__dirname + '/public/images/favicon/icon32.png'));
+app.use(favicon(__dirname + '/public/images/favicon/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extend: false}));
@@ -58,21 +57,12 @@ app.use(session({
 		db: settings.db
 	})
 }));
-// app.use(app.router);
 app.use(_static(path.join(__dirname, 'public')));
 app.use(function (err, req, res, next) {
 	var meta = '[' + new Date() + '] ' + req.url + '\n';
 	errorLog.write(meta + err.stack + '\n');
 	next();
 });
-//github
-passport.use(new GithubStrategy({
-  clientID: "c236c5b3ce11c027c837",
-  clientSecret: "fbbf3563241d3025bd7f59b839194d1288995645",
-  callbackURL: "http://hwh.club/login/github/callback"
-}, function(accessToken, refreshToken, profile, done) {
-  done(null, profile);
-}));
 // development only
 if ('development' == app.get('env')) {
  	app.use(errorHandler());
