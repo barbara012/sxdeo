@@ -22,52 +22,52 @@ module.exports = function (app) {
 			error: req.flash('error').toString()
 		});
 	});
-	//注册
-	app.get('/reg', function (req, res) {
-		res.render('reg', {
-			title: '注册',
-			user: req.session.user,
-			success: req.flash('success').toString(),
-			error: req.flash('error').toString()});
-	});
-	app.post('/reg', checkNotLogin);
-	app.post('/reg', function (req, res) {
-		var name = req.body.userName,
-			password = req.body.password,
-			md5 = crypto.createHash('md5'),
-			reg = /`|~|!|#|\$|%|\^|\*|\(|\-|\)|\+|_|=|\/|\||\\|。|，|》|《|>|<|！/;
-		password = md5.update(req.body.password).digest('hex');
-		if (reg.test(name)) {
-			req.flash('error', '用户名不包含非法字符');
-			return res.redirect('/reg');
-		}
-		if (name.length > 20 || name.length === 0) {
-			req.flash('error', '用户名过长');
-			return res.redirect('/reg');
-		}
-		var newUser = new User({
-			name: name,
-			password: password,
-			email: '838186163@qq.com'
-		});
-		//检查用户名与邮箱是否已经存在
-		User.get(newUser.name, function (err, user) {
-			if (user) {
-				req.flash('error', '用户名已存在');
-				return res.redirect('/');
-			}
-			//如果不存在则新增用户
-			newUser.save(function (err, user) {
-				if (err) {
-					req.flash('error', '系统忙');
-					return res.redirect('/');
-				}
-				req.session.user = user;//用户信息存入 session
-				req.flash('success', '注册成功！');
-				return res.redirect('/user_center');
-			});
-		});
-	});
+	// //注册
+	// app.get('/reg', function (req, res) {
+	// 	res.render('reg', {
+	// 		title: '注册',
+	// 		user: req.session.user,
+	// 		success: req.flash('success').toString(),
+	// 		error: req.flash('error').toString()});
+	// });
+	// app.post('/reg', checkNotLogin);
+	// app.post('/reg', function (req, res) {
+	// 	var name = req.body.userName,
+	// 		password = req.body.password,
+	// 		md5 = crypto.createHash('md5'),
+	// 		reg = /`|~|!|#|\$|%|\^|\*|\(|\-|\)|\+|_|=|\/|\||\\|。|，|》|《|>|<|！/;
+	// 	password = md5.update(req.body.password).digest('hex');
+	// 	if (reg.test(name)) {
+	// 		req.flash('error', '用户名不包含非法字符');
+	// 		return res.redirect('/reg');
+	// 	}
+	// 	if (name.length > 20 || name.length === 0) {
+	// 		req.flash('error', '用户名过长');
+	// 		return res.redirect('/reg');
+	// 	}
+	// 	var newUser = new User({
+	// 		name: name,
+	// 		password: password,
+	// 		email: '838186163@qq.com'
+	// 	});
+	// 	//检查用户名与邮箱是否已经存在
+	// 	User.get(newUser.name, function (err, user) {
+	// 		if (user) {
+	// 			req.flash('error', '用户名已存在');
+	// 			return res.redirect('/');
+	// 		}
+	// 		//如果不存在则新增用户
+	// 		newUser.save(function (err, user) {
+	// 			if (err) {
+	// 				req.flash('error', '系统忙');
+	// 				return res.redirect('/');
+	// 			}
+	// 			req.session.user = user;//用户信息存入 session
+	// 			req.flash('success', '注册成功！');
+	// 			return res.redirect('/user_center');
+	// 		});
+	// 	});
+	// });
 	//关于我们
 	app.get('/about_us', function (req, res) {
 		res.render('about_us', {
@@ -167,7 +167,7 @@ module.exports = function (app) {
 				if (err) {
 					req.flash('error', err);
 					console.log(err);
-					return res.redirect('/recruit');
+					return res.redirect('/manager_new');
 				};
 				res.render('edit_new', {
 					title: onenew.title,
@@ -181,7 +181,7 @@ module.exports = function (app) {
 			if (err) {
 				req.flash('error', '没有权限');
 				console.log(err);
-				return res.redirect('/new_center');
+				return res.redirect('/manager_new');
 			};
 		}
 
@@ -196,10 +196,10 @@ module.exports = function (app) {
 			if (err) {
 				console.log('err');
 				req.flash('error', err);
-				return res.redirect('/new_center');
+				return res.redirect('/manager_new');
 			}
 			req.flash('success', '修改成功!');
-			return res.redirect('/new_center');
+			return res.redirect('/manager_new');
 		});
 	});
 	//删除新闻
@@ -207,7 +207,7 @@ module.exports = function (app) {
 	app.get('/deletenew/:user/:id', function(req, res) {
 		if (req.session.user.name !== req.params.user) {
 			req.flash('error', '权限不够');
-			return res.redirect('new_center');
+			return res.redirect('manager_new');
 		}
 		PostNew.remove(req.params.id, function (err) {
 			if (err) {
@@ -215,28 +215,28 @@ module.exports = function (app) {
 				return res.redirect('back');
 			}
 			req.flash('success', '删除成功!');
-			res.redirect('new_center');
+			res.redirect('manager_new');
 		});
 	});
-	//新闻2
-	app.get('/newtwo', function (req, res) {
-		res.render('newtwo', {
-			title: '省市领导对帝奥电梯项目的关心重视',
-			user: req.session.user,
-			success: req.flash('success').toString(),
-			error: req.flash('error').toString()
-		});
-	});
-	//新闻3
-	app.get('/newthree', function (req, res) {
-		res.render('newthree', {
-			title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
-			user: req.session.user,
-			success: req.flash('success').toString(),
-			error: req.flash('error').toString()
-		});
-	});
-	//产品展示
+	// //新闻2
+	// app.get('/newtwo', function (req, res) {
+	// 	res.render('newtwo', {
+	// 		title: '省市领导对帝奥电梯项目的关心重视',
+	// 		user: req.session.user,
+	// 		success: req.flash('success').toString(),
+	// 		error: req.flash('error').toString()
+	// 	});
+	// });
+	// //新闻3
+	// app.get('/newthree', function (req, res) {
+	// 	res.render('newthree', {
+	// 		title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
+	// 		user: req.session.user,
+	// 		success: req.flash('success').toString(),
+	// 		error: req.flash('error').toString()
+	// 	});
+	// });
+	// //产品展示
 	app.get('/product_show', function (req, res) {
 		res.render('product_show', {
 			title: '产品展示--陕西帝奥电梯——中国一线电梯品牌领跑者',
@@ -382,10 +382,10 @@ module.exports = function (app) {
 			if (err) {
 				console.log('err');
 				req.flash('error', err);
-				return res.redirect('/recruit');
+				return res.redirect('/manager_job');
 			}
 			req.flash('success', '修改成功!');
-			return res.redirect('/recruit');
+			return res.redirect('/manager_job');
 		});
 	});
 	//删除职位
