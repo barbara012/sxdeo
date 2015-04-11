@@ -35,7 +35,7 @@ module.exports = function (app) {
 		var name = req.body.userName,
 			password = req.body.password,
 			md5 = crypto.createHash('md5'),
-			reg = /`|~|!|@|#|\$|%|\^|\*|\(|\-|\)|\+|_|=|\/|\||\\|。|，|》|《|>|<|！/;
+			reg = /`|~|!|#|\$|%|\^|\*|\(|\-|\)|\+|_|=|\/|\||\\|。|，|》|《|>|<|！/;
 		password = md5.update(req.body.password).digest('hex');
 		if (reg.test(name)) {
 			req.flash('error', '用户名不包含非法字符');
