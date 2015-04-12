@@ -28,7 +28,7 @@ var errorLog = fs.createWriteStream(__dirname + '/error.log', {flags: 'a'});
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 1314);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
