@@ -17,7 +17,7 @@ module.exports = function (app) {
 	app.get('/', function (req, res) {
 		res.render('index', {
 			user: req.session.user,
-			title: '陕西帝奥电梯——中国一线电梯品牌领跑者',
+			title: '陕西帝奥电梯-中国一线电梯品牌领跑者',
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
 		});
@@ -71,7 +71,7 @@ module.exports = function (app) {
 	//关于我们
 	app.get('/about_us', function (req, res) {
 		res.render('about_us', {
-			title: '关于我们--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			title: '关于我们|陕西帝奥电梯|中国一线电梯品牌领跑者',
 			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -109,7 +109,7 @@ module.exports = function (app) {
 				news = [];
 			}
 			res.render('new_center', {
-				title: '新闻中心--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				title: '新闻中心|陕西帝奥电梯|中国一线电梯品牌领跑者',
 				news: news,
 				page: page,
 				isFirstPage: (page - 1) == 0,
@@ -131,7 +131,7 @@ module.exports = function (app) {
 				news = [];
 			}
 			res.render('manager_new', {
-				title: '新闻中心--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				title: '新闻中心|陕西帝奥电梯|中国一线电梯品牌领跑者',
 				news: news,
 				page: page,
 				isFirstPage: (page - 1) == 0,
@@ -239,7 +239,7 @@ module.exports = function (app) {
 	// //产品展示
 	app.get('/product_show', function (req, res) {
 		res.render('product_show', {
-			title: '产品展示--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			title: '产品展示|陕西帝奥电梯|中国一线电梯品牌领跑者',
 			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -248,7 +248,7 @@ module.exports = function (app) {
 	//案例展示
 	app.get('/custom_case', function (req, res) {
 		res.render('custom_case', {
-			title: '客户案例展示--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			title: '客户案例展示|陕西帝奥电梯|中国一线电梯品牌领跑者',
 			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -264,7 +264,7 @@ module.exports = function (app) {
 				jobs = [];
 			}
 			res.render('recruit', {
-				title: '人力资源--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				title: '人力资源|陕西帝奥电梯|中国一线电梯品牌领跑者',
 				jobs: jobs,
 				page: page,
 				isFirstPage: (page - 1) == 0,
@@ -286,7 +286,7 @@ module.exports = function (app) {
 				jobs = [];
 			}
 			res.render('manager_job', {
-				title: '人力资源--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				title: '人力资源|陕西帝奥电梯|中国一线电梯品牌领跑者',
 				jobs: jobs,
 				page: page,
 				isFirstPage: (page - 1) == 0,
@@ -408,7 +408,7 @@ module.exports = function (app) {
 	//人力资源1
 	app.get('/jobone', function (req, res) {
 		res.render('jobone', {
-			title: '业务员-陕西帝奥电梯有限公司',
+			title: '业务员|陕西帝奥电梯',
 			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -417,7 +417,7 @@ module.exports = function (app) {
 	//人力资源2
 	app.get('/jobtwo', function (req, res) {
 		res.render('jobtwo', {
-			title: '行政文员-陕西帝奥电梯有限公司',
+			title: '行政文员|陕西帝奥电梯',
 			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -426,7 +426,7 @@ module.exports = function (app) {
 	//联系我们
 	app.get('/contact_us', function (req, res) {
 		res.render('contact_us', {
-			title: '联系我们--陕西帝奥电梯——中国一线电梯品牌领跑者',
+			title: '联系我们|陕西帝奥电梯|中国一线电梯品牌领跑者',
 			user: req.session.user,
 			success: req.flash('success').toString(),
 			error: req.flash('error').toString()
@@ -486,7 +486,7 @@ module.exports = function (app) {
 			}
 			req.flash('success', '发布成功!');
 			res.render('new_center', {
-				title: '新闻中心-陕西帝奥电梯——中国一线电梯品牌领跑者',
+				title: '新闻中心|陕西帝奥电梯|中国一线电梯品牌领跑者',
 				user: req.session.user,
 				success: req.flash('success').toString(),
 				error: req.flash('error').toString()
@@ -504,7 +504,7 @@ module.exports = function (app) {
 				messs = [];
 			}
 			res.render('leave_message', {
-				title: '人力资源--陕西帝奥电梯——中国一线电梯品牌领跑者',
+				title: '人力资源|陕西帝奥电梯|中国一线电梯品牌领跑者',
 				messs: messs,
 				page: page,
 				isFirstPage: (page - 1) == 0,
