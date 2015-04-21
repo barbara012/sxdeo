@@ -130,7 +130,7 @@ code {
 		background-image: url(/img/index/banner1.jpg)
 	}
 	.slider__item2 {
-		background-image: url(/img/index/banner2.jpg)
+		background-image: url(/img/index/banner2.jpg?v1)
 	}
 	.slider__item3 {
 		background-image: url(/img/index/banner3.jpg)
@@ -406,7 +406,7 @@ code {
 		.map {
 			margin: 15px 0 30px;
 			height: 254px;
-			background-image: url(/img/index/map.jpg);
+			background-image: url(/img/index/map.jpg?v1);
 			background-position: center;
 		}
 		.span {
@@ -674,9 +674,6 @@ code {
 	}
 	.cz {
 		padding-top: 40px !important;
-		.ele__item {
-			margin: 0 30px;
-		}
 	}
 	.wj {
 		.float-l {
@@ -685,9 +682,20 @@ code {
 		.ele__detail-des {
 			padding-top: 50px;
 		}
-		.ele__name {
+		.title {
 			font-size: 24px;
-			margin-bottom: 15px;
+			margin: 0 0 15px 50px;
+			&:before {
+				content: '';
+				width: 5px;
+				height: 5px;
+				border: 2px solid #015198;
+				border-radius: 10px;
+				display: inline-block;
+				margin-right: 10px;
+				vertical-align: 4px;
+
+			}
 		}
 		.des__block {
 			margin-bottom: 15px;
@@ -697,6 +705,11 @@ code {
 		}
 		.p1 {
 			color: #015198;
+		}
+	}
+	.spe1 {
+		.ele__item {
+			width: 431px;
 		}
 	}
 }
